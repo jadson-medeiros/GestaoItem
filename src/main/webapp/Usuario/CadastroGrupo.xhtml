@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui"
+  template="template.xhtml">
+
+  <h:head>
+    <title>Cadastro de Grupo</title>   
+  </h:head>
+
+  <h:body>
+    <h:form styleClass="form-ui form-ui-item">
+      <br />
+      <h1>Cadastro de Grupo</h1>
+      <br />
+      <h:panelGrid
+        columns="4"
+        columnClasses="p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4, p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4"
+        styleClass="customPanelGrid">
+        <p:outputLabel for="nome" value="Nome" />
+        <p:inputText id="nome"
+          required="true"
+          placeholder="Nome"
+          value="#{guiCadastroGrupo.nome}"/>
+
+        <p:outputLabel for="modalidade" value="Modalidade" />
+        <p:selectOneMenu id="modalidade" 
+            value="#{guiCadastroGrupo.modalidade}" 
+            required="true">
+            <f:selectItem 
+                itemLabel="Selecione..." 
+                itemValue="" 
+                noSelectionOption="true"/>
+            <f:selectItems 
+                value="#{guiCadastroGrupo.modalidades}"/>
+        </p:selectOneMenu>
+   
+      </h:panelGrid>
+      <p:commandButton
+        value="Gravar"
+        style="width: 25%; margin-top: 10px;"
+        action="#{guiCadastroGrupo.addGrupo()}"
+        update="@form"
+        ajax="false"/>
+    </h:form>
+  </h:body>
+</ui:decorate>

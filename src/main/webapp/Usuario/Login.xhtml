@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui"
+  template="template.xhtml">
+    
+    <h:head>
+        <title>Login</title>    
+    </h:head>
+    
+    <h:form styleClass="form-ui form-ui-login">
+        <br />
+        <h1>Login</h1>
+        <br />
+    
+        <p:growl showDetail="true" sticky="true" />
+    
+        <h:panelGrid columns="1" cellpadding="5">
+          <h:outputLabel styleClass="txt-login">Usuário</h:outputLabel>
+          <p:inputText
+            required="true"
+            value="#{guiLogin.usuario}"
+            requiredMessage="Usuário não preenchido"
+            style="width: 100%" />
+          <h:outputLabel styleClass="txt-login">Senha</h:outputLabel>
+          <p:password
+            required="true"
+            value="#{guiLogin.senha}"
+            requiredMessage="Senha não preenchido"
+            style="width: 100%" />
+          <p:commandButton
+            value="Entrar"
+            action="#{guiLogin.logar()}"
+            update="@form"
+            ajax="false"/>
+        </h:panelGrid>
+  </h:form>
+</ui:decorate>

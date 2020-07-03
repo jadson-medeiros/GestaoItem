@@ -1,0 +1,211 @@
+/* ----- BASIC SETUP ----- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+  font-family: "Arial", sans-serif;
+  height: 100vh;
+}
+
+/* ----- REUSABLE ----- */
+.form-ui {
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0px 3px 8px -4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -60%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ----- MENUBAR ----- */
+html .ui-menubar .ui-menubar-options {
+  float: right !important;
+}
+
+html .ui-menuitem {
+  float: left !important;
+}
+
+html .ui-menu,
+.ui-menu .ui-menu-child {
+  background: #fff;
+}
+
+html .ui-corner-all .ui-menu,
+ui-menu .ui-menu-child {
+  border-radius: 0;
+}
+
+html .ui-widget-content {
+  border: none;
+}
+
+html .ui-widget {
+  font-size: 80%;
+}
+
+html .ui-menu {
+  padding: 20px 50px;
+}
+
+html .ui-menubar .ui-menuitem-link {
+  border: none;
+  background: none;
+  font-weight: normal;
+}
+
+html .ui-widget-content a {
+  color: #000;
+}
+
+html .ui-menubar .ui-menuitem {
+  width: auto;
+  margin: 0 15px;
+}
+
+html .ui-menubar .ui-menu-child .ui-menuitem {
+  width: auto;
+}
+
+html .ui-corner-all .ui-menuitem .ui-menuitem-link {
+  border-radius: 0 !important;
+}
+
+html .ui-menuitem-link {
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+html .ui-menuitem-link:hover {
+  box-shadow: none !important;
+  border-bottom: 1px solid #3498db;
+  letter-spacing: 1px;
+  transition: border-bottom 0.2s, letter-spacing 0.2s;
+}
+
+/* ----- LOGIN ----- */
+.form-ui-login {
+  width: 25%;
+  height: 50%;
+  flex-direction: column;
+}
+
+.form-ui-login h1 {
+  font-size: 22px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin: -20px 0 10px 0;
+}
+
+.txt-login {
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #95a5a6;
+}
+
+html .ui-inputfield,
+.ui-widget-content .ui-inputfield,
+.ui-widget-header .ui-inputfield {
+  width: 90%;
+  margin: 10px 0;
+  box-shadow: none;
+  background-color: #fff;
+  font-size: 14px;
+}
+
+html .ui-inputfield {
+  padding: 10px;
+}
+
+html .ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+  background: none;
+  border: 1px solid #bdc3c7;
+  font-weight: 500;
+  color: #000;
+  text-shadow: none;
+}
+
+html .ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+html .ui-state-hover,
+.ui-state-default {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+html .ui-state-default {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+/* ----- CADASTRO USUARIO ----- */
+.form-ui-cadastro {
+  width: 50%;
+  height: 45%;
+}
+
+html .ui-outputlabel {
+  padding: 5px;
+}
+
+html .ui-selectonemenu .ui-selectonemenu-label {
+  width: 100%;
+}
+
+/* ----- CADASTRO ITEM ----- */
+.form-ui-item {
+  width: 60%;
+  height: 70%;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.form-ui-item h1 {
+  margin-top: -20px;
+}
+
+/* ----- BUTTONS ----- */
+html .ui-button-text-only .ui-button-text {
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bolder;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+html .ui-button {
+  width: 100%;
+  border: none !important;
+  background-color: #3498db;
+  border: 1px solid #3498db;
+}
+
+html .ui-button:hover {
+  background-color: #2487c9;
+  border: 1px solid #2487c9;
+  transition: background-color 0.2s;
+}

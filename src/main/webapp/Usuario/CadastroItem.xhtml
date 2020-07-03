@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<ui:decorate
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui"
+  template="template.xhtml">
+
+  <h:head>
+    <title>Cadastro de Item</title>   
+  </h:head>
+
+  <h:body>
+    <h:form styleClass="form-ui form-ui-item">
+      <br />
+      <h1>Cadastro de Item</h1>
+      <br />
+      
+      <h:panelGrid
+        columns="4"
+        columnClasses="p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4, p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4"
+        styleClass="customPanelGrid">
+        <p:outputLabel for="nome" value="Nome" />
+        <p:inputText id="nome"
+          required="true"
+          placeholder="Nome"
+          value="#{guiCadastroItem.nome}"/>
+
+        <p:outputLabel for="idf" value="Identificador" />
+        <p:inputText id="idf"
+          required="true"
+          placeholder="id"
+          value="#{guiCadastroItem.idf}"/>
+
+        <p:outputLabel for="descricao" value="Descrição" />
+        <p:inputTextarea
+          rows="10"
+          cols="50"
+          completeMethod="#{inputTextareaView.completeArea}"
+          queryDelay="750"
+          minQueryLength="4"
+          id="descricao"
+          required="true"
+          placeholder="Descrição"
+          value="#{guiCadastroItem.descricao}">
+        </p:inputTextarea>
+      </h:panelGrid>
+      <p:commandButton
+        value="Gravar"
+        style="width: 25%; margin-top: 10px;"
+        action="#{guiCadastroItem.addItem()}"
+        update="@form"
+        ajax="false"/>
+    </h:form>
+  </h:body>
+</ui:decorate>

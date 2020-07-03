@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  template="template.xhtml"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+  <style type="text/css">
+    .ui-treetable table {
+      table-layout: fixed;
+    }
+
+    .value {
+      font-weight: bold;
+    }
+
+    .ui-dialog table {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+
+  <h:body>
+    <br />
+    <h:form 
+        id="form" 
+        styleClass="form-ui"
+        style="margin: 25px 25px 25px 25px">
+      <p:treeTable value="#{guiListaItem.root}" var="item">
+        <!--<f:facet name="header">
+          Item
+        </f:facet>-->
+        <p:column headerText="Nome">
+            <h:outputText value="#{item}" />
+        </p:column>
+        <p:column headerText="Quantidade">
+          <h:outputText value="#{item.quantidade}" />
+        </p:column>
+        <p:column headerText="Modalidade">
+          <h:outputText value="#{item.tipo}" />
+        </p:column>
+        <p:column 
+            headerText="Ações"
+            style="width: 300px;">            
+            <!--<p:commandLink
+                update=":form:documentPanel"
+                oncomplete="PF('documentDialog').show()"
+                title="View Detail"
+                styleClass="ui-icon pi pi-search">
+                <f:setPropertyActionListener
+                  value="#{item}"
+                  target="#{guiListaItem.selectedItem}"/>
+              </p:commandLink>-->
+            
+            <p:commandButton
+                value="Add Grupo"
+                style="width: 55%;"
+                action="#{guiListaItem.addGrupo()}"
+                update="@form"
+                ajax="false"/>
+             
+            <p:commandButton
+                value="Add Item"
+                style="width: 55%;"
+                action="#{guiListaItem.addItem()}"
+                update="@form"
+                ajax="false"/>
+        </p:column>
+      </p:treeTable>
+
+      <p:dialog
+        id="dialog"
+        header="Item Detalhes"
+        showEffect="fade"
+        widgetVar="documentDialog"
+        modal="true"
+        resizable="false">
+          
+        <p:outputPanel id="documentPanel">
+          <p:panelGrid
+            columns="2"
+            columnClasses="label,value"
+            rendered="#{not empty guiListaItem.selectedItem}">
+              
+            <h:outputLabel for="name" value="Nome: " />
+            <h:outputText
+              id="name"
+              value="#{guiListaItem.selectedItem.nome}"
+              style="font-weight: bold;"/>
+
+            <h:outputLabel for="size" value="Quantidade: " />
+            <h:outputText
+              id="size"
+              value="#{guiListaItem.selectedItem.quantidade}"
+              style="font-weight: bold;"/>
+
+            <h:outputLabel for="type" value="Modalidade " />
+            <h:outputText
+              id="type"
+              value="#{guiListaItem.selectedItem.tipo}"
+              style="font-weight: bold;"/>
+          </p:panelGrid>
+        </p:outputPanel>
+      </p:dialog>
+    </h:form>
+  </h:body>
+</ui:decorate>
