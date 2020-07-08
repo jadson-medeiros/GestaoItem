@@ -26,13 +26,13 @@
         <p:inputText id="nome"
           required="true"
           placeholder="Nome"
-          value="#{guiCadastroItem.nome}"/>
+          value="#{guiCadastroItem.item.nome}"/>
 
-        <p:outputLabel for="idf" value="Identificador" />
+        <p:outputLabel for="idf" value="Código Compras net" />
         <p:inputText id="idf"
           required="true"
-          placeholder="id"
-          value="#{guiCadastroItem.idf}"/>
+          placeholder="Código ComprasNet"
+          value="#{guiCadastroItem.item.codigoComprasnet}"/>
 
         <p:outputLabel for="descricao" value="Descrição" />
         <p:inputTextarea
@@ -44,7 +44,7 @@
           id="descricao"
           required="true"
           placeholder="Descrição"
-          value="#{guiCadastroItem.descricao}">
+          value="#{guiCadastroItem.item.descricao}">
         </p:inputTextarea>
       </h:panelGrid>
       <p:commandButton

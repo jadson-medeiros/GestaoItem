@@ -6,6 +6,7 @@
 package gui;
 
 import dao.GrupoDao;
+import dao.ModalidadeDao;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -30,28 +31,32 @@ public class GuiCadastroGrupo implements Serializable
     @EJB
     GrupoDao daoGrupo;
     
-    private Grupo grupo;
+    @EJB
+    ModalidadeDao daoModalidade;
+    
+    private Grupo grupo = new Grupo();
     private Long id;
     
     private String nome;
-    
-    private List<Modalidade> modalidades;
-    
-    private Modalidade modalidade  = new Modalidade();
+        
+    private Modalidade modalidade;
     
     public GuiCadastroGrupo() 
     {
     }   
 
     public void addGrupo()
-    {
-        this.grupo = new Grupo();
-        this.grupo.setNome(this.nome);        
-        this.grupo.setModalidade(modalidade);
-        
+    {        
         daoGrupo.add(grupo);
     }
 
+    public ModalidadeDao getDaoModalidade() {
+        return daoModalidade;
+    }
+
+    public void setDaoModalidade(ModalidadeDao daoModalidade) {
+        this.daoModalidade = daoModalidade;
+    }
 
     public GrupoDao getDaoGrupo()
     {
@@ -67,7 +72,7 @@ public class GuiCadastroGrupo implements Serializable
     {
         return grupo;
     }
-
+   
     public void setGrupo(Grupo grupo) 
     {
         this.grupo = grupo;
@@ -75,12 +80,7 @@ public class GuiCadastroGrupo implements Serializable
     
     public List<Modalidade> getModalidades() 
     {
-        return modalidades;
-    }
-
-    public void setModalidades(List<Modalidade> modalidades) 
-    {
-        this.modalidades = modalidades;
+        return daoModalidade.getAllModalidade();
     }
 
     public Modalidade getModalidade() 

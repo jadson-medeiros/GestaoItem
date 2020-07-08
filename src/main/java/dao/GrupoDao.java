@@ -40,7 +40,7 @@ public class GrupoDao
         em.remove(grupo);
     }
     
-    public List<Usuario> getAllGrupo() 
+    public List<Grupo> getAllGrupo() 
     {
         Query q = em.createQuery("select u from Grupo u order by u.nome");
         return q.getResultList();

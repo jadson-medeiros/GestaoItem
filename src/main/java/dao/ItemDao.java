@@ -39,7 +39,7 @@ public class ItemDao
         em.remove(item);
     }
     
-    public List<Usuario> getAllItem() 
+    public List<Item> getAllItem() 
     {
         Query q = em.createQuery("select u from Item u order by u.nome");
         return q.getResultList();

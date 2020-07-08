@@ -30,12 +30,28 @@ public class GuiCadastroItem implements Serializable
     
     private List<Item> itens;
     private Item item  = new Item();
-    
+    /*
     private Long id;
     private String idf;
     private String nome;
     private Integer quantidade;
-    private String descricao;
+    private String descricao;*/
+
+    public ItemDao getDaoItem() {
+        return daoItem;
+    }
+
+    public void setDaoItem(ItemDao daoItem) {
+        this.daoItem = daoItem;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
 
     public GuiCadastroItem() 
     {
@@ -62,7 +78,7 @@ public class GuiCadastroItem implements Serializable
     public void setItens(List<Item> itens) {
         this.itens = itens;
     }
-     
+     /*
     public Long getId() {
         return id;
     }
@@ -101,5 +117,5 @@ public class GuiCadastroItem implements Serializable
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
+    }*/
 }
