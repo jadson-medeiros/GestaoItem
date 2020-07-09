@@ -28,9 +28,13 @@
           value="#{guiCadastroGrupo.nome}"/>
 
         <p:outputLabel for="selectOneB" value="Modalidade" />
-        <p:selectOneMenu id="selectOneB" value="#{guiCadastroGrupo.grupo.modalidade}" required="true">
+        <p:selectOneMenu id="selectOneB" value="#{guiCadastroGrupo.idModalidade}" required="true">
             <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true"/>
-            <f:selectItems value="#{guiCadastroGrupo.daoModalidade.allModalidade}"/>
+            <f:selectItems 
+                value="#{guiCadastroGrupo.daoModalidade.allModalidade}" 
+                var="m" 
+                itemLabel="#{m.nome}" 
+                itemValue="#{m.id}"/>
         </p:selectOneMenu>
            
       </h:panelGrid>

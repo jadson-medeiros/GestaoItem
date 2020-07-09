@@ -37,6 +37,8 @@ public class GuiCadastroGrupo implements Serializable
     private Grupo grupo = new Grupo();
     private Long id;
     
+    private Long idModalidade;
+
     private String nome;
         
     private Modalidade modalidade;
@@ -47,9 +49,29 @@ public class GuiCadastroGrupo implements Serializable
 
     public void addGrupo()
     {        
+        List<Modalidade> modalidades = daoModalidade.getAllModalidade();
+        System.out.println(idModalidade);
+        for(Modalidade m : modalidades){
+            System.out.println(m.getId());
+            if(m.getId().equals(idModalidade)) {
+                grupo.setModalidade(m);
+                System.out.println(m);
+            }
+        }
+        
         daoGrupo.add(grupo);
     }
 
+    public Long getIdModalidade() 
+    {
+        return idModalidade;
+    }
+
+    public void setIdModalidade(Long idModalidade) 
+    {
+        this.idModalidade = idModalidade;
+    }
+    
     public ModalidadeDao getDaoModalidade() {
         return daoModalidade;
     }
