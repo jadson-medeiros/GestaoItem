@@ -6,36 +6,50 @@
   xmlns:h="http://java.sun.com/jsf/html"
   xmlns:f="http://java.sun.com/jsf/core"
   xmlns:p="http://primefaces.org/ui"
-  template="template.xhtml">
-
+  template="template.xhtml"
+>
   <h:head>
-    <title>Grupos</title>    
+    <title>Grupos</title>
   </h:head>
 
   <h:body>
-      <h:form styleClass="form-ui form-ui-cadastro">    
-          <p:dataTable id="tabela" 
-                var="gp" 
-                value="#{guiGrupo.grupos}" 
-                selection="#{guiGrupo.grupo}" 
-                rowKey="#{gp.id}">
-              
-            <f:facet name="header">
-                Grupos
-            </f:facet>
-            <p:column selectionMode="single" style="width:16px;text-align:center"/>
+    <h:form styleClass="form-ui form-ui-cadastro">
+      <p:dataTable
+        id="tabela"
+        var="gp"
+        value="#{guiGrupo.grupos}"
+        selection="#{guiGrupo.grupo}"
+        rowKey="#{gp.id}"
+      >
+        <f:facet name="header">
+          Grupos
+        </f:facet>
+        <p:column
+          selectionMode="single"
+          style="width: 16px; text-align: center;"
+        />
 
-            <p:column headerText="Nome">
-                <h:outputText value="#{gp.nome}" />
-            </p:column>
+        <p:column headerText="Nome">
+          <h:outputText value="#{gp.nome}" />
+        </p:column>
 
-            <p:column headerText="Modalidade" style="width: 100px">
-                <h:outputText value="#{gp.modalidade}" />
-            </p:column>
+        <p:column headerText="Modalidade" style="width: 100px;">
+          <h:outputText value="#{gp.modalidade}" />
+        </p:column>
 
-            <f:facet name="footer">
-            </f:facet>
-        </p:dataTable>
+        <f:facet name="footer">
+          <p:commandButton
+            ajax="false"
+            value="Excluir"
+            action="#{guiGrupo.removeGrupo()}"
+          />
+          <p:commandButton
+            ajax="false"
+            value="Itens"
+            action="#{guiGrupo.itensList()}"
+          />
+        </f:facet>
+      </p:dataTable>
     </h:form>
   </h:body>
 </ui:decorate>

@@ -45,8 +45,7 @@ public class GuiGrupo implements Serializable
     {
         this.grupo = grupo;
     }
-    
-    
+        
     public List<Grupo> getGrupos()
     {
         return grupos;
@@ -56,14 +55,17 @@ public class GuiGrupo implements Serializable
     {
         this.grupos = grupos;
     }
-    
-  
-    
-    public String logar()
+     
+    public void itensList()
     {
-        return "./Cadastro.xhtml";
+        //return "./Cadastro.xhtml";
     }
-        
+    
+    public void removeGrupo() 
+    {
+        daoGrupo.remove(grupo);
+    } 
+
     public String getUsuario() 
     {
         return usuario;

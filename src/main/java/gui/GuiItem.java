@@ -18,7 +18,7 @@ import model.Item;
  *
  * @author jadson
  */
-@Named(value = "guiGrupo")
+@Named(value = "guiItem")
 @SessionScoped
 public class GuiItem implements Serializable 
 {
@@ -58,8 +58,6 @@ public class GuiItem implements Serializable
     {
         this.grupos = grupos;
     }
-    
-  
     
     public String logar()
     {
