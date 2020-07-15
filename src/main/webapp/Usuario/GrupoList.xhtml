@@ -9,62 +9,33 @@
   template="template.xhtml">
 
   <h:head>
-    <title>Cadastro de Usuário</title>    
+    <title>Grupos</title>    
   </h:head>
 
   <h:body>
-    <h:form styleClass="form-ui form-ui-cadastro">
-      <h:panelGrid
-        columns="4"
-        columnClasses="p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4, p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4">
-        <p:outputLabel for="nome" value="Nome" />
-        <p:inputText
-          id="nome"
-          required="true"
-          placeholder="Nome"
-          value="#{guiCadastroUsuario.usuario.nome}"/>
+      <h:form styleClass="form-ui form-ui-cadastro">    
+          <p:dataTable id="tabela" 
+                var="gp" 
+                value="#{guiGrupo.grupos}" 
+                selection="#{guiGrupo.grupo}" 
+                rowKey="#{gp.id}">
+              
+            <f:facet name="header">
+                Grupos
+            </f:facet>
+            <p:column selectionMode="single" style="width:16px;text-align:center"/>
 
-        <p:outputLabel for="sobrenome" value="Sobrenome" />
-        <p:inputText
-          id="sobrenome"
-          required="true"
-          placeholder="Sobrenome"
-          value="#{guiCadastroUsuario.usuario.sobreNome}"/>
+            <p:column headerText="Nome">
+                <h:outputText value="#{gp.nome}" />
+            </p:column>
 
-        <p:outputLabel for="usuario" value="Usuário" />
-        <p:inputText
-          id="usuario"
-          required="true"
-          placeholder="Usuário"
-          value="#{guiCadastroUsuario.usuario.usuario}"/>
+            <p:column headerText="Modalidade" style="width: 100px">
+                <h:outputText value="#{gp.modalidade}" />
+            </p:column>
 
-        <p:outputLabel for="selectOneB" value="Tipo de Usuário" />
-       
-        <p:selectOneMenu id="selectOneB" value="#{guiCadastroUsuario.usuario.tipoUsuarioENUM}" required="true">
-            <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true"/>
-            <f:selectItems value="#{guiCadastroUsuario.tiposUsuarioENUM}"/>
-        </p:selectOneMenu>
-        <p:outputLabel for="senha" value="Senha" />
-        <p:password
-          id="senha"
-          required="true"
-          placeholder="Senha"
-          value="#{guiCadastroUsuario.usuario.senha}"/>
-
-        <p:outputLabel for="confirmarSenha" value="Confirmar Senha" />
-        <p:password
-          id="confirmarSenha"
-          value="#{guiCadastroUsuario.usuario.senha}"
-          required="true"
-          placeholder="Senha"/>
-
-        <p:commandButton
-          value="Gravar"
-          style="width: 250%; transform: translate(200px, 10px) "
-          action="#{guiCadastroUsuario.addUsuario()}"
-          update="@form"
-          ajax="false"/>
-      </h:panelGrid>
+            <f:facet name="footer">
+            </f:facet>
+        </p:dataTable>
     </h:form>
   </h:body>
 </ui:decorate>
