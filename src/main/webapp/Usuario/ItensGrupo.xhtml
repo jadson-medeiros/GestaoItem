@@ -9,29 +9,28 @@
     template="template.xhtml"
     >
     <h:head>
-        <title>Grupos</title>
+        <title>Itens do Grupo #{guiGrupo.grupo.nome}</title>
     </h:head>
 
     <h:body>
         <h:form styleClass="form-ui form-ui-cadastro">
             <p:dataTable
                 id="tabela"
-                var="gp"
-                value="#{guiGrupo.grupos}"
-                selection="#{guiGrupo.grupo}"
-                rowKey="#{gp.id}"
-                emptyMessage="Nenhum grupo cadastrado"
+                var="item"
+                value="#{guiGrupo.itens}"
+                rowKey="#{item.id}"
+                emptyMessage="Nenhum item cadastrado para o grupo #{guiGrupo.grupo.nome} "
                 >
                 <f:facet name="header">
-                    Grupos
+                    Itens do Grupo #{guiGrupo.grupo.nome}
                 </f:facet>
 
                 <p:column headerText="Nome" style="width: 40%">
-                    <h:outputText value="#{gp.nome}" />
+                    <h:outputText value="#{item.nome}" />
                 </p:column>
 
-                <p:column headerText="Modalidade" style="width: 30%;">
-                    <h:outputText value="#{gp.modalidade}" />
+                <p:column headerText="Descrição" style="width: 30%;">
+                    <h:outputText value="#{item.descricao}" />
                 </p:column>
 
                 <p:column  style="width: 30%;">

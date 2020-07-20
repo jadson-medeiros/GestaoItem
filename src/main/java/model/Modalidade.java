@@ -54,7 +54,7 @@ public class Modalidade implements Serializable {
 
     @Override
     public String toString() {
-        return "Modalidade{" + "id=" + id + ", nome=" + nome + '}';
+        return this.nome;
     }
 
     public String getNome() {

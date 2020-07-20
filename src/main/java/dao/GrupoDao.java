@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import model.Grupo;
+import model.Item;
 
 
 /**
@@ -37,7 +38,7 @@ public class GrupoDao
     
     public void remove(Grupo grupo) 
     {
-        em.remove(grupo);
+        em.remove(em.merge(grupo));
     }
     
     public List<Grupo> getAllGrupo() 
@@ -52,5 +53,12 @@ public class GrupoDao
 
     public void setEm(EntityManager em) {
         this.em = em;
+    }
+    
+    
+    public List<Item> getItens(Grupo grupo) {
+        Query q = em.createQuery("select i from Item i where i.grupo.id = :id");
+        q.setParameter("id", grupo.getId());
+        return q.getResultList();
     }
 }

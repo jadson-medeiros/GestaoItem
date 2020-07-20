@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import model.Grupo;
+import model.Item;
 
 /**
  *
@@ -26,6 +27,7 @@ public class GuiGrupo implements Serializable
     private String usuario;    
     private String senha; 
     private List<Grupo> grupos;
+    private List<Item> itens;
     private Grupo grupo;
 
     @EJB
@@ -33,9 +35,15 @@ public class GuiGrupo implements Serializable
     
     public GuiGrupo() 
     {
-        this.grupos = daoGrupo.getAllGrupo();
+        
     }
-      
+    
+    
+    public String iniciar() {
+        this.grupos = daoGrupo.getAllGrupo();
+        return "GrupoList";
+    }
+    
     public Grupo getGrupo() 
     {
         return grupo;
@@ -48,6 +56,7 @@ public class GuiGrupo implements Serializable
         
     public List<Grupo> getGrupos()
     {
+        
         return grupos;
     }
 
@@ -56,14 +65,17 @@ public class GuiGrupo implements Serializable
         this.grupos = grupos;
     }
      
-    public void itensList()
+    public String itensList(Grupo g)
     {
-        //return "./Cadastro.xhtml";
+        itens = daoGrupo.getItens(g);
+        this.grupo = g;
+        return "ItensGrupo";
     }
     
-    public void removeGrupo() 
+    public String removeGrupo(Grupo g) 
     {
-        daoGrupo.remove(grupo);
+        daoGrupo.remove(g);
+        return iniciar();
     } 
 
     public String getUsuario() 
@@ -85,4 +97,14 @@ public class GuiGrupo implements Serializable
     {
         this.senha = senha;
     }
+
+    public List<Item> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<Item> itens) {
+        this.itens = itens;
+    }
+    
+    
 }

@@ -25,62 +25,40 @@ public class GuiItem implements Serializable
     /**
      * Creates a new instance of GuiLogin
      */
-    private String usuario;    
-    private String senha; 
     private List<Item> itens;
-    private Grupo grupo;
+    private Item item;
 
     @EJB
     ItemDao daoItem;
     
     public GuiItem() 
     {
-        this.itens = daoItem.getAllItemByGrupoId(grupo.getId());
+        //this.itens = daoItem.getAllItemByGrupoId(grupo.getId());
+    }
+
+    public List<Item> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<Item> itens) {
+        this.itens = itens;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public ItemDao getDaoItem() {
+        return daoItem;
+    }
+
+    public void setDaoItem(ItemDao daoItem) {
+        this.daoItem = daoItem;
     }
       
-    public Grupo getGrupo() 
-    {
-        return grupo;
-    }
-
-    public void setGrupo(Grupo grupo) 
-    {
-        this.grupo = grupo;
-    }
-    
-    
-    public List<Grupo> getGrupos()
-    {
-        return grupos;
-    }
-
-    public void setGrupos(List<Grupo> grupos) 
-    {
-        this.grupos = grupos;
-    }
-    
-    public String logar()
-    {
-        return "./Cadastro.xhtml";
-    }
-        
-    public String getUsuario() 
-    {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) 
-    {
-        this.usuario = usuario;
-    }
-    
-    public String getSenha() 
-    {
-        return senha;
-    }
-
-    public void setSenha(String senha) 
-    {
-        this.senha = senha;
-    }
+   
 }
