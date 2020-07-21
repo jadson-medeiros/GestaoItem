@@ -1,57 +1,57 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:decorate
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui"
-    template="template.xhtml"
-    >
-    <h:head>
-        <title>Grupos</title>
-    </h:head>
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui"
+  template="template.xhtml"
+>
+  <h:head>
+    <title>Grupos</title>
+  </h:head>
 
-    <h:body>
-        <h:form styleClass="form-ui form-ui-cadastro">
-            <p:dataTable
-                id="tabela"
-                var="gp"
-                value="#{guiGrupo.grupos}"
-                selection="#{guiGrupo.grupo}"
-                rowKey="#{gp.id}"
-                emptyMessage="Nenhum grupo cadastrado"
-                >
-                <f:facet name="header">
-                    Grupos
-                </f:facet>
+  <h:body>
+    <h:form styleClass="form-ui form-ui-cadastro">
+      <p:dataTable
+        id="tabela"
+        var="gp"
+        value="#{guiGrupo.grupos}"
+        selection="#{guiGrupo.grupo}"
+        rowKey="#{gp.id}"
+        emptyMessage="Nenhum grupo cadastrado"
+      >
+        <f:facet name="header">
+          Grupos
+        </f:facet>
 
-                <p:column headerText="Nome" style="width: 40%">
-                    <h:outputText value="#{gp.nome}" />
-                </p:column>
+        <p:column headerText="Nome" style="width: 40%;">
+          <h:outputText value="#{gp.nome}" />
+        </p:column>
 
-                <p:column headerText="Modalidade" style="width: 30%;">
-                    <h:outputText value="#{gp.modalidade}" />
-                </p:column>
+        <p:column headerText="Modalidade" style="width: 30%;">
+          <h:outputText value="#{gp.modalidade}" />
+        </p:column>
 
-                <p:column  style="width: 30%;">
-                    <p:commandButton
-                        ajax="false"
-                        value="Excluir"
-                        action="#{guiGrupo.removeGrupo(gp)}"
-                        />
-                    <p:commandButton
-                        ajax="false"
-                        value="Itens"
-                        action="#{guiGrupo.itensList(gp)}"
-                        />
-                    <p:commandButton
-                        ajax="false"
-                        value="Novo Grupo"
-                        action="#{guiGrupo.grupoList(gp)}"
-                        />
-                </p:column>
-            </p:dataTable>
-        </h:form>
-    </h:body>
+        <p:column style="width: 30%;">
+          <p:commandButton
+            ajax="false"
+            value="Excluir"
+            action="#{guiGrupo.removeGrupo(gp)}"
+          />
+          <p:commandButton
+            ajax="false"
+            value="Itens"
+            action="#{guiGrupo.itensList(gp)}"
+          />
+          <p:commandButton
+            ajax="false"
+            value="Novo Grupo"
+            action="#{guiGrupo.grupoList(gp)}"
+          />
+        </p:column>
+      </p:dataTable>
+    </h:form>
+  </h:body>
 </ui:decorate>
