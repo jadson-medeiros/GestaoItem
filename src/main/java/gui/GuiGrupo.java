@@ -72,6 +72,13 @@ public class GuiGrupo implements Serializable
         return "ItensGrupo";
     }
     
+    public String gruposList(Grupo g)
+    {
+        itens = daoGrupo.getItens(g);
+        this.grupo = g;
+        return "GruposGrupo";
+    }
+    
     public String removeGrupo(Grupo g) 
     {
         daoGrupo.remove(g);
