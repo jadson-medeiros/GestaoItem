@@ -13,7 +13,14 @@
     </h:head>
 
     <h:body>
-        <h:form styleClass="form-ui form-ui-cadastro">
+
+        <h:form styleClass="form-ui form-ui-item">
+        <p:commandButton
+          ajax="false"
+          style="width: 10%; margin-top: 10px; margin: 5px"
+          value="Novo Grupo"
+          action="#{guiGrupo.addNewGrupoByGrupo(guiGrupo.grupo)}"/>
+        
             <p:dataTable id="tabela"
                 var="item"
                 value="#{guiGrupo.itens}"
@@ -47,10 +54,6 @@
                 </p:column>
             </p:dataTable>
             
-                    <p:commandButton
-                        ajax="false"
-                        value="Novo Grupo"
-                        action="#{guiGrupo.addNewGrupoByGrupo(guiGrupo.grupo)}"/>
         </h:form>
     </h:body>
 </ui:decorate>
