@@ -6,48 +6,53 @@
   xmlns:h="http://java.sun.com/jsf/html"
   xmlns:f="http://java.sun.com/jsf/core"
   xmlns:p="http://primefaces.org/ui"
-  template="template.xhtml"
->
+  template="template.xhtml">
+    
   <h:body>
-    <h:form>
-      <p:dataTable
-        id="tabela"
-        var="gp"
-        value="#{guiGrupo.grupos}"
-        selection="#{guiGrupo.grupo}"
-        rowKey="#{gp.id}"
-        emptyMessage="Nenhum grupo cadastrado"
-      >
-        <f:facet name="header">
-          Grupos
-        </f:facet>
+    <h:form styleClass="form-ui form-ui-item">                   
+        <p:commandButton
+          ajax="false"
+          value="Novo Grupo"
+          style="width: 10%; margin-top: 10px; margin: 5px"
+          action="#{guiGrupo.addNewGrupo()}"/>
+        
+        <p:dataTable
+          id="tabela"
+          var="gp"
+          value="#{guiGrupo.grupos}"
+          selection="#{guiGrupo.grupo}"
+          rowKey="#{gp.id}"
+          emptyMessage="Nenhum grupo cadastrado" >
+          <f:facet name="header">
+            Grupos
+          </f:facet>
 
-        <p:column headerText="Nome" style="width: 40%;">
-          <h:outputText value="#{gp.nome}" />
-        </p:column>
+          <p:column headerText="Nome" style="width: 45%;">
+            <h:outputText value="#{gp.nome}" />
+          </p:column>
 
-        <p:column headerText="Modalidade" style="width: 30%;">
-          <h:outputText value="#{gp.modalidade}" />
-        </p:column>
+          <p:column headerText="Modalidade" style="width: 35%;">
+            <h:outputText value="#{gp.modalidade}" />
+          </p:column>
 
-        <p:column style="width: 30%;">
-          <p:commandButton
-            ajax="false"
-            value="Excluir"
-            action="#{guiGrupo.removeGrupo(gp)}"
-          />
-          <p:commandButton
-            ajax="false"
-            value="Itens"
-            action="#{guiGrupo.itensList(gp)}"
-          />
-          <p:commandButton
-            ajax="false"
-            value="Grupos"
-            action="#{guiGrupo.gruposList(gp)}"
-          />
-        </p:column>
-      </p:dataTable>
+          <p:column style="width: 20%;">            
+            <p:commandButton
+              ajax="false"
+              value="Itens"
+              style="width: 25%; margin-top: 10px;"
+              action="#{guiGrupo.itensList(gp)}"/>
+            <p:commandButton
+              ajax="false"
+              value="Grupos"            
+              style="width: 25%; margin-top: 10px;"
+              action="#{guiGrupo.gruposList(gp)}" />
+            <p:commandButton
+              ajax="false"
+              value="Excluir"
+              style="width: 25%; margin-top: 10px;"
+              action="#{guiGrupo.removeGrupo(gp)}"/>
+          </p:column>
+        </p:dataTable>
     </h:form>
   </h:body>
 </ui:decorate>

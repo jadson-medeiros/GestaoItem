@@ -142,7 +142,8 @@ public class GuiGrupo implements Serializable
     {       
         item.setGrupo(g);
         daoItem.add(item);
-        iniciar();
+        
+        itensList(g);
     }
 //#endregion
     public GuiGrupo() 
@@ -215,6 +216,11 @@ public class GuiGrupo implements Serializable
     public String addNewGrupoByGrupo(Grupo g)
     {        
         this.grupo = g;
+        return "CadastroGrupo";
+    }
+    
+    public String addNewGrupo()
+    {        
         return "CadastroGrupo";
     }
     
