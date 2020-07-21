@@ -138,12 +138,12 @@ public class GuiGrupo implements Serializable
         this.item = item;
     }
     
-    public void addItem(Grupo g)
+    public String addItem(Grupo g)
     {       
         item.setGrupo(g);
         daoItem.add(item);
         
-        itensList(g);
+        return itensList(g);
     }
 //#endregion
     public GuiGrupo() 
