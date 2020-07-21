@@ -6,12 +6,54 @@
   xmlns:h="http://java.sun.com/jsf/html"
   xmlns:f="http://java.sun.com/jsf/core"
   xmlns:p="http://primefaces.org/ui"
-  template="template.xhtml">
-
+  template="template.xhtml"
+>
   <h:head>
-    <title>Cadastro de Grupo</title>   
+    <title>Cadastro de Grupo</title>
   </h:head>
 
+  <h:body>
+    <h:form 
+        styleClass="form-ui form-ui-item">
+      <br />
+      <h1>Cadastro de Grupo</h1>
+      <br />
+      <h:panelGrid
+        columns="4"
+        columnClasses="p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4, p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4"
+        styleClass="customPanelGrid">
+        <p:outputLabel for="nome" value="Nome" />
+        <p:inputText
+          id="nome"
+          required="true"
+          placeholder="Nome"
+          value="#{guiGrupo.nome}"/>
+
+        <p:outputLabel for="selectOneB" value="Modalidade" />
+        <p:selectOneMenu
+          id="selectOneB"
+          value="#{guiGrupo.idModalidade}"
+          required="true" >
+          <f:selectItem
+            itemLabel="Selecione..."
+            itemValue=""/>
+          <f:selectItems
+            value="#{guiGrupo.daoModalidade.allModalidade}"
+            var="m"
+            itemLabel="#{m.nome}"
+            itemValue="#{m.id}"/>
+        </p:selectOneMenu>
+      </h:panelGrid>
+      <p:commandButton
+          
+        value="Gravar"
+        style="width: 25%; margin-top: 10px;"
+        action="#{guiGrupo.addGrupoByGrupo(guiGrupo.grupo)}"
+        update="@form"
+        ajax="false"/>
+    </h:form>
+  </h:body>
+  <!-- 
   <h:body>
     <h:form styleClass="form-ui form-ui-item">
       <br />
@@ -45,5 +87,5 @@
         update="@form"
         ajax="false"/>
     </h:form>
-  </h:body>
+  </h:body> -->
 </ui:decorate>

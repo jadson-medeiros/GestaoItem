@@ -20,7 +20,7 @@
                 rowKey="#{item.id}"
                 emptyMessage="Nenhum item cadastrado para o grupo #{guiGrupo.grupo.nome} ">
                 <f:facet name="header">
-                    Itens do Grupo #{guiGrupo.grupo.nome}
+                    Grupos do Grupo #{guiGrupo.grupo.nome}
                 </f:facet>
 
                 <p:column headerText="Nome" style="width: 40%">
@@ -34,13 +34,23 @@
                 <p:column style="width: 30%;">
                     <p:commandButton
                         ajax="false"
-                        value="Excluir"/>
+                        value="Novo Grupo"
+                        action="#{guiGrupo.addGrupoByGrupo(gp)}"/>
+                    <p:commandButton
+                        ajax="false"
+                        value="Excluir"
+                        action="#{guiGrupo.removeGrupo(gp)}"/>
                     <p:commandButton
                         ajax="false"
                         value="Itens"
                         action="#{guiGrupo.itensList(gp)}"/>
                 </p:column>
             </p:dataTable>
+            
+                    <p:commandButton
+                        ajax="false"
+                        value="Novo Grupo"
+                        action="#{guiGrupo.addNewGrupoByGrupo(guiGrupo.grupo)}"/>
         </h:form>
     </h:body>
 </ui:decorate>

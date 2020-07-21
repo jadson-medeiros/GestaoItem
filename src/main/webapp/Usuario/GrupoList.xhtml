@@ -6,22 +6,21 @@
   xmlns:h="http://java.sun.com/jsf/html"
   xmlns:f="http://java.sun.com/jsf/core"
   xmlns:p="http://primefaces.org/ui"
-  template="template.xhtml"
->
+  template="template.xhtml">
+    
   <h:head>
     <title>Grupos</title>
   </h:head>
 
   <h:body>
     <h:form styleClass="form-ui form-ui-cadastro">
-      <p:dataTable
-        id="tabela"
+      <p:dataTable id="tabela"
         var="gp"
         value="#{guiGrupo.grupos}"
         selection="#{guiGrupo.grupo}"
         rowKey="#{gp.id}"
-        emptyMessage="Nenhum grupo cadastrado"
-      >
+        emptyMessage="Nenhum grupo cadastrado">
+          
         <f:facet name="header">
           Grupos
         </f:facet>
@@ -45,7 +44,7 @@
             action="#{guiGrupo.itensList(gp)}"/>
           <p:commandButton
             ajax="false"
-            value="Novo Grupo"
+            value="Grupos"
             action="#{guiGrupo.gruposList(gp)}"/>
         </p:column>
       </p:dataTable>
