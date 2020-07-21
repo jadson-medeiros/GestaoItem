@@ -6,21 +6,54 @@
   xmlns:h="http://java.sun.com/jsf/html"
   xmlns:f="http://java.sun.com/jsf/core"
   xmlns:p="http://primefaces.org/ui"
-  template="template.xhtml">
-    
-  <h:head>
-    <title>Grupos</title>
-  </h:head>
+  template="template.xhtml"
+>
+  <style>
+    /* ----- CADASTRO ITEM ----- */
+    .form-ui-item {
+      width: 60%;
+      height: 70%;
+      flex-direction: column;
+      margin-top: 40px;
+    }
+
+    .form-ui-item h1 {
+      margin-top: -20px;
+    }
+
+    /* ----- BUTTONS ----- */
+    html .ui-button-text-only .ui-button-text {
+      padding: 10px;
+      font-size: 14px;
+      font-weight: bolder;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    html .ui-button {
+      width: 100%;
+      border: none !important;
+      background-color: #3498db;
+      border: 1px solid #3498db;
+    }
+
+    html .ui-button:hover {
+      background-color: #2487c9;
+      border: 1px solid #2487c9;
+      transition: background-color 0.2s;
+    }
+  </style>
 
   <h:body>
-    <h:form styleClass="form-ui form-ui-cadastro">
-      <p:dataTable id="tabela"
+    <h:form>
+      <p:dataTable
+        id="tabela"
         var="gp"
         value="#{guiGrupo.grupos}"
         selection="#{guiGrupo.grupo}"
         rowKey="#{gp.id}"
-        emptyMessage="Nenhum grupo cadastrado">
-          
+        emptyMessage="Nenhum grupo cadastrado"
+      >
         <f:facet name="header">
           Grupos
         </f:facet>
@@ -37,15 +70,18 @@
           <p:commandButton
             ajax="false"
             value="Excluir"
-            action="#{guiGrupo.removeGrupo(gp)}"/>
+            action="#{guiGrupo.removeGrupo(gp)}"
+          />
           <p:commandButton
             ajax="false"
             value="Itens"
-            action="#{guiGrupo.itensList(gp)}"/>
+            action="#{guiGrupo.itensList(gp)}"
+          />
           <p:commandButton
             ajax="false"
             value="Grupos"
-            action="#{guiGrupo.gruposList(gp)}"/>
+            action="#{guiGrupo.gruposList(gp)}"
+          />
         </p:column>
       </p:dataTable>
     </h:form>
