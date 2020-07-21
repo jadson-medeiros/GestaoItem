@@ -13,7 +13,7 @@
     </h:head>
 
     <h:body>
-        <h:form styleClass="form-ui form-ui-cadastro">
+        <h:form >
             <p:dataTable id="tabela"
                 var="item"
                 value="#{guiGrupo.itens}"
@@ -34,11 +34,8 @@
                 <p:column style="width: 30%;">
                     <p:commandButton
                         ajax="false"
-                        value="Excluir"/>
-                    <p:commandButton
-                        ajax="false"
-                        value="Itens"
-                        action="#{guiGrupo.itensList(gp)}"/>
+                        value="Excluir"
+                        action="#{guiGrupo.removeItem(item)}"/>
                 </p:column>
             </p:dataTable>
         </h:form>

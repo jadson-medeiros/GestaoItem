@@ -4,64 +4,66 @@
   xmlns="http://www.w3.org/1999/xhtml"
   xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:p="http://primefaces.org/ui"      
-  xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
   <h:head>
     <title>Cadastro Itens</title>
-    <meta charset="UTF-8"></meta>
+    <meta charset="UTF-8" />
   </h:head>
-    
-  <h:body>
-    <h:outputStylesheet name="style.css" library="css"/>
-   <h:form> 
-    <p:menubar>        
-        <p:menuitem 
-            value="Home" 
-            url="./Login.xhtml" 
-            ajax="false"></p:menuitem>
 
-        <p:submenu label="Cadastros" id="cadastros" >
-            <p:menuitem
-             value="Usuário"
-             url="./Cadastro.xhtml"
-             ajax="false"></p:menuitem>
-            <p:menuitem
+  <h:body>
+    <h:outputStylesheet name="style.css" library="css" />
+    <h:form>
+      <p:menubar>
+        <p:menuitem value="Home" url="./Login.xhtml" ajax="false"></p:menuitem>
+
+        <p:submenu label="Cadastros" id="cadastros">
+          <p:menuitem
+            value="Usuário"
+            url="./Cadastro.xhtml"
+            ajax="false"
+          ></p:menuitem>
+          <!-- <p:menuitem
              value="Grupo"
              url="./CadastroGrupo.xhtml"
              ajax="false"></p:menuitem>
             <p:menuitem
              value="Item"
              url="./CadastroItem.xhtml"
-             ajax="false"></p:menuitem>
+             ajax="false"></p:menuitem> -->
         </p:submenu>
 
-        <p:menuitem
+        <!-- <p:menuitem
             value="Lista de Itens"
             url="./ListaItem.xhtml"
-            ajax="false"></p:menuitem>
-        
-        <p:menuitem
-            value="Grupos"
-            action="#{guiGrupo.iniciar()}"
-            ajax="false"></p:menuitem>
-        
-        <p:menuitem 
-            value="Sair" 
-            url="./Login.xhtml" 
-            ajax="false"></p:menuitem>
+            ajax="false"></p:menuitem> -->
 
-        <f:facet name="options" >
-            <h:link 
-                style="display: flex; justify-content: flex-end; align-items: center;">
-                <p:graphicImage 
-                    url="http://www.macae.rj.gov.br/imagens/topo/logo-padrao.png"
-                    alt="prefeitura-macae-logo"
-                    style="margin-top: -15px; width: 60%;"/>
-            </h:link>
+        <p:menuitem
+          value="Grupos"
+          action="#{guiGrupo.iniciar()}"
+          ajax="false"
+        ></p:menuitem>
+
+        <p:menuitem value="Sair" url="./Login.xhtml" ajax="false"></p:menuitem>
+
+        <f:facet name="options">
+          <h:link
+            style="
+              display: flex;
+              justify-content: flex-end;
+              align-items: center;
+            "
+          >
+            <p:graphicImage
+              url="http://www.macae.rj.gov.br/imagens/topo/logo-padrao.png"
+              alt="prefeitura-macae-logo"
+              style="margin-top: -15px; width: 60%;"
+            />
+          </h:link>
         </f:facet>
-    </p:menubar>
-   </h:form>
+      </p:menubar>
+    </h:form>
     <ui:insert></ui:insert>
   </h:body>
 </html>

@@ -18,6 +18,7 @@ public class Item extends Componente implements Serializable {
 
     private String descricao;
     private String codigoComprasnet;
+    
     @ManyToOne
     private Unidade unidade;
     

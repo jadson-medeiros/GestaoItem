@@ -5,6 +5,7 @@
  */
 package gui;
 import dao.GrupoDao;
+import dao.ItemDao;
 import dao.ModalidadeDao;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -120,6 +121,30 @@ public class GuiGrupo implements Serializable
     }
 //#endregion
 
+//#region Itens from GUiCadastroItem
+    @EJB
+    ItemDao daoItem;
+    
+    //private List<Item> itens;
+    private Item item  = new Item();
+    
+    public Item getItem() 
+    {
+        return item;
+    }
+
+    public void setItem(Item item) 
+    {
+        this.item = item;
+    }
+    
+    public void addItem(Grupo g)
+    {       
+        item.setGrupo(g);
+        daoItem.add(item);
+        iniciar();
+    }
+//#endregion
     public GuiGrupo() 
     {
         
@@ -148,7 +173,8 @@ public class GuiGrupo implements Serializable
             }
         }
         
-        daoGrupo.add(newGrupo);
+        daoGrupo.add(newGrupo);        
+        iniciar();
     }
     
     public Grupo getGrupo() 
@@ -191,13 +217,25 @@ public class GuiGrupo implements Serializable
         this.grupo = g;
         return "CadastroGrupo";
     }
+    
+    public String addNewItemByGrupo(Grupo g)
+    {        
+        this.grupo = g;
+        return "CadastroItem";
+    }
 
     public String removeGrupo(Grupo g) 
     {
         daoGrupo.remove(g);
         return iniciar();
     } 
-
+    
+    public String removeItem(Item i) 
+    {
+        daoItem.remove(i);
+        return iniciar();
+    } 
+    
     public String getUsuario() 
     {
         return usuario;

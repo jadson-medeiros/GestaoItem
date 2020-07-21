@@ -36,7 +36,7 @@ public class ItemDao
     
     public void remove(Item item) 
     {
-        em.remove(item);
+        em.remove(em.merge(item));
     }
     
     public List<Item> getAllItem() 
