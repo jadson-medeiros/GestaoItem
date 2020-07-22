@@ -83,13 +83,12 @@ html .ui-corner-all .ui-menuitem .ui-menuitem-link {
 html .ui-menuitem-link {
   text-transform: uppercase;
   margin-top: 10px;
+  transition: border-bottom 0.3s;
 }
 
 html .ui-menuitem-link:hover {
   box-shadow: none !important;
   border-bottom: 1px solid #3498db;
-  letter-spacing: 1px;
-  transition: border-bottom 0.2s, letter-spacing 0.2s;
 }
 
 /* ----- LOGIN ----- */
@@ -202,10 +201,43 @@ html .ui-button {
   border: none !important;
   background-color: #3498db;
   border: 1px solid #3498db;
+  transition: background-color 0.2s;
 }
 
 html .ui-button:hover {
   background-color: #2487c9;
   border: 1px solid #2487c9;
-  transition: background-color 0.2s;
+}
+
+/* ----- GROUP LIST ----- */
+.form-ui-gp{
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -60%);
+  display: flex;
+  justify-content: center;
+}
+
+html .new-group-btn{
+    width: 20%;
+    margin-top: 10px;
+}
+
+
+
+html .ui-datatable-header{
+   background: #ecf0f1;
+   border: 1px solid #ecf0f1;
+   color: #454c51;
+}    
+    
+html #tabela{
+   border: none;
+} 
+
+html .iconOnly{
+    text-align: center;
 }
