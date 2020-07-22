@@ -8,6 +8,7 @@
 html {
   background-color: #fff;
   font-family: "Arial", sans-serif;
+  color: #546164;
   height: 100vh;
 }
 
@@ -64,7 +65,7 @@ html .ui-menubar .ui-menuitem-link {
 }
 
 html .ui-widget-content a {
-  color: #000;
+  color: #546164;
 }
 
 html .ui-menubar .ui-menuitem {
@@ -87,8 +88,33 @@ html .ui-menuitem-link {
 }
 
 html .ui-menuitem-link:hover {
+  color: #546164;
   box-shadow: none !important;
   border-bottom: 1px solid #3498db;
+}
+
+/* ----- HEADINGS ----- */
+html h1,
+h2{
+    color: #546164;
+}
+
+html h1{
+  font-size: 21px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: -20px 0 10px 0;
+}
+
+html .h2-title:hover{
+    border-bottom: none;
+    cursor: default;
+}
+
+html h4{
+    padding: 5px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 /* ----- LOGIN ----- */
@@ -96,13 +122,6 @@ html .ui-menuitem-link:hover {
   width: 25%;
   height: 50%;
   flex-direction: column;
-}
-
-.form-ui-login h1 {
-  font-size: 22px;
-  font-weight: 400;
-  text-transform: uppercase;
-  margin: -20px 0 10px 0;
 }
 
 .txt-login {
@@ -187,7 +206,7 @@ html .ui-selectonemenu .ui-selectonemenu-label {
   margin-top: -20px;
 }
 
-/* ----- BUTTONS ----- */
+/* ----- BOTOES ----- */
 html .ui-button-text-only .ui-button-text {
   padding: 10px;
   font-size: 14px;
@@ -209,7 +228,7 @@ html .ui-button:hover {
   border: 1px solid #2487c9;
 }
 
-/* ----- GROUP LIST ----- */
+/* ----- GRUPO LIST ----- */
 .form-ui-gp{
   background-color: #fff;
   position: absolute;
@@ -221,23 +240,17 @@ html .ui-button:hover {
   justify-content: center;
 }
 
-html .new-group-btn{
+html .new-btn{
     width: 20%;
     margin-top: 10px;
 }
 
-
-
 html .ui-datatable-header{
-   background: #ecf0f1;
-   border: 1px solid #ecf0f1;
-   color: #454c51;
-}    
-    
-html #tabela{
-   border: none;
+   background: #546164;
+   border: 1px solid #6c787f;
+   color: #fff;
 } 
 
-html .iconOnly{
-    text-align: center;
+html .ui-widget-header{
+    text-shadow: none;
 }

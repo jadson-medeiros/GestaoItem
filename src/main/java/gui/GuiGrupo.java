@@ -200,7 +200,7 @@ public class GuiGrupo implements Serializable
         return "GrupoList";
     }
     
-    public void addGrupoByGrupo(Grupo g)
+    public String addGrupoByGrupo(Grupo g)
     {        
         List<Modalidade> modalidades = daoModalidade.getAllModalidade();
                 
@@ -218,7 +218,7 @@ public class GuiGrupo implements Serializable
         }
         
         daoGrupo.add(newGrupo);        
-        iniciar();
+        return iniciar();
     }
     
     public Grupo getGrupo() 
