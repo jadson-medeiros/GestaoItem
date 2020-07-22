@@ -14,13 +14,16 @@
         var="grupo"
         value="#{guiGrupo.gruposGrupo}"
         rowKey="#{grupo.id}"
+        scrollable="true" 
+        scrollHeight="300"
         emptyMessage="Nenhum grupo cadastrado para o grupo #{guiGrupo.grupo.nome} ">
           
         <f:facet name="header">
-          Grupos do Grupo #{guiGrupo.grupo.nome}
+            Grupos do Grupo #{guiGrupo.grupo.nome}
         </f:facet>
-
-        <p:column headerText="Nome" style="width: 80%;">
+          
+        <p:ajax event="sort" skipChildren="false" />   
+        <p:column headerText="Nome" sortBy="#{grupo.nome}" style="width: 80%;">
           <h:outputText value="#{grupo.nome}" />
         </p:column>
 

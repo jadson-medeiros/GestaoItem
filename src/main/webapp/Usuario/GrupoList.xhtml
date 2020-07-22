@@ -11,20 +11,22 @@
   <h:body>
     <h:form styleClass="form-ui-gp form-ui-item">                   
 
-        <p:dataTable
-          id="tabela"
+        <p:dataTable id="tabela"
           var="gp"
           value="#{guiGrupo.grupos}"
           selection="#{guiGrupo.grupo}"
           rowKey="#{gp.id}"
+          scrollable="true" 
+          scrollHeight="300"
           emptyMessage="Nenhum grupo cadastrado" >
-          <f:facet name="header">
-            Grupos
-          </f:facet>
-
-          <p:column headerText="Nome" style="width: 80%;">
-            <h:outputText value="#{gp.nome}" />
-          </p:column>
+            <f:facet name="header">
+              Grupos
+            </f:facet>
+            
+            <p:ajax event="sort" skipChildren="false" />   
+            <p:column headerText="Nome" sortBy="#{gp.nome}" style="width: 80%;">
+              <h:outputText value="#{gp.nome}" />
+            </p:column>
 
           <p:column style="width: 20%;">            
             <p:commandButton class="iconOnly" action="#{guiGrupo.itensList(gp)}" style="width: 25%; margin: 10px 0px 0px 13px; font-size: 150%;" icon="pi pi-pencil" />

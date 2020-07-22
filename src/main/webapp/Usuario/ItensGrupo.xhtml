@@ -15,13 +15,16 @@
             var="item"
             value="#{guiGrupo.itens}"
             rowKey="#{item.id}"
+            scrollable="true" 
+            scrollHeight="300"
             emptyMessage="Nenhum item cadastrado para o grupo #{guiGrupo.grupo.nome} ">
             <f:facet name="header">
                 Itens do Grupo #{guiGrupo.grupo.nome}
             </f:facet>
 
-            <p:column headerText="Nome" style="width: 25%">
-                <h:outputText value="#{item.nome}" />
+            <p:ajax event="sort" skipChildren="false" />        
+            <p:column headerText="Nome" sortBy="#{item.nome}" style="width: 25%">
+               <h:outputText value="#{item.nome}" />
             </p:column>
 
             <p:column headerText="Descrição" style="width: 25%;">
