@@ -48,15 +48,17 @@ public class GrupoDao
     }    
 
     public EntityManager getEm() {
+        
         return em;
     }
 
-    public void setEm(EntityManager em) {
+    public void setEm(EntityManager em) 
+    {
         this.em = em;
-    }
+    }    
     
-    
-    public List<Item> getItens(Grupo grupo) {
+    public List<Item> getItens(Grupo grupo)
+    {
         Query q = em.createQuery("select i from Item i where i.grupo.id = :id");
         q.setParameter("id", grupo.getId());
         return q.getResultList();

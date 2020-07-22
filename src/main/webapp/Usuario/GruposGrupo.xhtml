@@ -1,59 +1,68 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <ui:decorate
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui"
-    template="template.xhtml">
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui"
+  template="template.xhtml">
     
-    <h:head>
-        <title>Grupos do Grupo #{guiGrupo.grupo.nome}</title>
-    </h:head>
+  <h:body>
+    <h:form styleClass="form-ui-gp form-ui-item">
+      <p:dataTable id="tabela"
+        var="grupo"
+        value="#{guiGrupo.gruposGrupo}"
+        rowKey="#{grupo.id}"
+        emptyMessage="Nenhum grupo cadastrado para o grupo #{guiGrupo.grupo.nome} ">
+          
+        <f:facet name="header">
+          Grupos do Grupo #{guiGrupo.grupo.nome}
+        </f:facet>
 
-    <h:body>
+        <p:column headerText="Nome" style="width: 80%;">
+          <h:outputText value="#{grupo.nome}" />
+        </p:column>
 
-        <h:form styleClass="form-ui form-ui-item">
-        <p:commandButton
-          ajax="false"
-          style="width: 10%; margin-top: 10px; margin: 5px"
-          value="Novo Grupo"
-          action="#{guiGrupo.addNewGrupoByGrupo(guiGrupo.grupo)}"/>
-        
-            <p:dataTable id="tabela"
-                var="item"
-                value="#{guiGrupo.itens}"
-                rowKey="#{item.id}"
-                emptyMessage="Nenhum item cadastrado para o grupo #{guiGrupo.grupo.nome} ">
-                <f:facet name="header">
-                    Grupos do Grupo #{guiGrupo.grupo.nome}
-                </f:facet>
+        <p:column style="width: 20%;">
+          <p:commandButton
+            class="iconOnly"
+            action="#{guiGrupo.itensList(gp)}"
+            style="width: 25%; margin: 10px 0px 0px 13px; font-size: 150%;"
+            icon="pi pi-pencil"/>
+          <p:commandButton
+            class="iconOnly"
+            action="#{guiGrupo.addGrupoByGrupo(gp)}"
+            style="width: 25%; margin-top: 10px; font-size: 150%;"
+            icon="pi pi-plus"/>
+          <p:commandButton
+            class="iconOnly"
+            action="#{guiGrupo.removeGrupo(gp)}"
+            style="width: 25%; margin-top: 10px; font-size: 150%;"
+            icon="pi pi-trash"/>
+        </p:column>
+        <!-- <p:column style="width: 30%;">
+                <p:commandButton
+                    ajax="false"
+                    value="Novo Grupo"
+                    action="#{guiGrupo.addGrupoByGrupo(gp)}"/>
+                <p:commandButton
+                    ajax="false"
+                    value="Excluir"
+                    action="#{guiGrupo.removeGrupo(gp)}"/>
+                <p:commandButton
+                    ajax="false"
+                    value="Itens"
+                    action="#{guiGrupo.itensList(gp)}"/>
+            </p:column> -->
+      </p:dataTable>
 
-                <p:column headerText="Nome" style="width: 40%">
-                    <h:outputText value="#{item.nome}" />
-                </p:column>
-
-                <p:column headerText="Descrição" style="width: 30%;">
-                    <h:outputText value="#{item.descricao}" />
-                </p:column>
-
-                <p:column style="width: 30%;">
-                    <p:commandButton
-                        ajax="false"
-                        value="Novo Grupo"
-                        action="#{guiGrupo.addGrupoByGrupo(gp)}"/>
-                    <p:commandButton
-                        ajax="false"
-                        value="Excluir"
-                        action="#{guiGrupo.removeGrupo(gp)}"/>
-                    <p:commandButton
-                        ajax="false"
-                        value="Itens"
-                        action="#{guiGrupo.itensList(gp)}"/>
-                </p:column>
-            </p:dataTable>
-            
-        </h:form>
-    </h:body>
+      <p:commandButton
+        ajax="false"
+        style="width: 10%; margin-top: 10px; margin: 5px;"
+        value="Novo Grupo"
+        action="#{guiGrupo.addNewGrupoByGrupo(guiGrupo.grupo)}"
+      />
+    </h:form>
+  </h:body>
 </ui:decorate>

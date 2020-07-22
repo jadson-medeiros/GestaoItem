@@ -6,6 +6,7 @@
 package gui;
 
 import dao.ItemDao;
+import dao.UnidadeDao;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -28,28 +29,29 @@ public class GuiCadastroItem implements Serializable
     @EJB
     ItemDao daoItem;
     
+    @EJB
+    UnidadeDao daoUnidade;
+    
     private List<Item> itens;
     private Item item  = new Item();
-    /*
-    private Long id;
-    private String idf;
-    private String nome;
-    private Integer quantidade;
-    private String descricao;*/
-
-    public ItemDao getDaoItem() {
+ 
+    public ItemDao getDaoItem() 
+    {
         return daoItem;
     }
 
-    public void setDaoItem(ItemDao daoItem) {
+    public void setDaoItem(ItemDao daoItem) 
+    {
         this.daoItem = daoItem;
     }
 
-    public Item getItem() {
+    public Item getItem() 
+    {
         return item;
     }
 
-    public void setItem(Item item) {
+    public void setItem(Item item) 
+    {
         this.item = item;
     }
 
@@ -59,63 +61,16 @@ public class GuiCadastroItem implements Serializable
 
     public void addItem()
     {
-      //  if(incluindo)
-        //{
-            daoItem.add(item);
-        //} 
-       // else
-        //{
-        //    daoItem.update(item);
-        //}
-             
-        // return "./CadastroItem.xhtml";
+        daoItem.add(item);
     }
 
-    public List<Item> getItens() {
+    public List<Item> getItens() 
+    {
         return itens;
     }
 
-    public void setItens(List<Item> itens) {
+    public void setItens(List<Item> itens)
+    {
         this.itens = itens;
     }
-     /*
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getIdf() {
-        return idf;
-    }
-
-    public void setIdf(String idf) {
-        this.idf = idf;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Integer getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }*/
 }

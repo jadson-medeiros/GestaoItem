@@ -25,8 +25,7 @@
           value="#{guiGrupo.item.nome}"/>
 
         <p:outputLabel for="idf" value="Código Compras net" />
-        <p:inputText
-          id="idf"
+        <p:inputText id="idf"
           required="true"
           placeholder="Código ComprasNet"
           value="#{guiGrupo.item.codigoComprasnet}"/>
@@ -41,8 +40,21 @@
           id="descricao"
           required="true"
           placeholder="Descrição"
-          value="#{guiGrupo.item.descricao}">            
+          value="#{guiGrupo.item.descricao}">      
         </p:inputTextarea>
+        
+        <p:outputLabel for="selectOneB" value="Modalidade" />
+        <p:selectOneMenu id="selectOneB"
+          value="#{guiGrupo.idModalidade}"
+          required="true"        >
+          <f:selectItem itemLabel="Selecione..." itemValue="" />
+          <f:selectItems
+            value="#{guiGrupo.daoModalidade.allModalidade}"
+            var="m"
+            itemLabel="#{m.nome}"
+            itemValue="#{m.id}"/>
+        </p:selectOneMenu>
+        
       </h:panelGrid>
       <p:commandButton
         value="Gravar"

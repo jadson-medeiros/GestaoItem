@@ -9,13 +9,7 @@
     template="template.xhtml">
     
     <h:body>
-        <h:form styleClass="form-ui form-ui-item">
-        <p:commandButton
-          ajax="false"
-          value="Novo Item"
-          style="width: 10%; margin-top: 10px; margin: 5px"
-          action="#{guiGrupo.addNewItemByGrupo(guiGrupo.grupo)}"/>
-                    
+        <h:form styleClass="form-ui-gp form-ui-item">            
         
         <p:dataTable id="tabela"
             var="item"
@@ -30,18 +24,28 @@
                 <h:outputText value="#{item.nome}" />
             </p:column>
 
-            <p:column headerText="Descrição" style="width: 50%;">
+            <p:column headerText="Descrição" style="width: 25%;">
                 <h:outputText value="#{item.descricao}" />
             </p:column>
-
+            
+            <p:column headerText="Unidade" style="width: 25%;">
+                <h:outputText value="#{item.unidade}" />
+            </p:column>
+            
             <p:column style="width: 25%;">
                 <p:commandButton
                     ajax="false"
-                    value="Excluir"
-                    style="width: 25%; margin-top: 10px;"
+                    class="iconOnly"
+                    style="width: 25%; margin-top: 10px; font-size: 150%;" icon="pi pi-trash"
                     action="#{guiGrupo.removeItem(item)}"/>
             </p:column>
         </p:dataTable>
+            
+        <p:commandButton
+          ajax="false"
+          value="Novo Item"
+          style="width: 10%; margin-top: 10px; margin: 5px"
+          action="#{guiGrupo.addNewItemByGrupo(guiGrupo.grupo)}"/>
         </h:form>
     </h:body>
 </ui:decorate>

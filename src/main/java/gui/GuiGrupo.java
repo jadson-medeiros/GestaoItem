@@ -12,7 +12,6 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import model.Componente;
 import model.Grupo;
 import model.Item;
 import model.Modalidade;
@@ -34,6 +33,7 @@ public class GuiGrupo implements Serializable
     private List<Item> itens;
     private Grupo grupo;
 
+    private List<Grupo> gruposGrupo;
     @EJB
     GrupoDao daoGrupo;
     
@@ -53,10 +53,10 @@ public class GuiGrupo implements Serializable
     public void addGrupo()
     {        
         List<Modalidade> modalidades = daoModalidade.getAllModalidade();
-        System.out.println(idModalidade);
-        for(Modalidade m : modalidades){
-            System.out.println(m.getId());
-            if(m.getId().equals(idModalidade)) {
+        for(Modalidade m : modalidades)
+        {
+            if(m.getId().equals(idModalidade)) 
+            {
                 grupo.setModalidade(m);
                 System.out.println(m);
             }
@@ -65,6 +65,16 @@ public class GuiGrupo implements Serializable
         daoGrupo.add(grupo);
     }
 
+    public List<Grupo> getGruposGrupo() 
+    {
+        return gruposGrupo;
+    }
+
+    public void setGruposGrupo(List<Grupo> gruposGrupo) 
+    {
+        this.gruposGrupo = gruposGrupo;
+    }
+       
     public Long getIdModalidade() 
     {
         return idModalidade;
@@ -208,8 +218,8 @@ public class GuiGrupo implements Serializable
     
     public String gruposList(Grupo g)
     {
-        itens = daoGrupo.getItens(g);
         this.grupo = g;
+        //grupos = daoGrupo.(g);
         return "GruposGrupo";
     }
     
