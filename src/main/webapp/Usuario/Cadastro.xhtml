@@ -7,11 +7,7 @@
   xmlns:f="http://java.sun.com/jsf/core"
   xmlns:p="http://primefaces.org/ui"
   template="template.xhtml">
-
-  <h:head>
-    <title>Cadastro de Usuário</title>    
-  </h:head>
-
+  
   <h:body>
     <h:form styleClass="form-ui form-ui-cadastro">
       <h:panelGrid
@@ -39,17 +35,23 @@
           value="#{guiCadastroUsuario.usuario.usuario}"/>
 
         <p:outputLabel for="selectOneB" value="Tipo de Usuário" />
-       
-        <p:selectOneMenu id="selectOneB" value="#{guiCadastroUsuario.usuario.tipoUsuarioENUM}" required="true">
-            <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true"/>
-            <f:selectItems value="#{guiCadastroUsuario.tiposUsuarioENUM}"/>
+
+        <p:selectOneMenu
+          id="selectOneB"
+          value="#{guiCadastroUsuario.usuario.tipoUsuarioENUM}"
+          required="true">
+          <f:selectItem
+            itemLabel="Selecione..."
+            itemValue=""
+            noSelectionOption="true"/>
+          <f:selectItems value="#{guiCadastroUsuario.tiposUsuarioENUM}" />
         </p:selectOneMenu>
         <p:outputLabel for="senha" value="Senha" />
         <p:password
           id="senha"
           required="true"
           placeholder="Senha"
-          value="#{guiCadastroUsuario.usuario.senha}"/>
+          value="#{guiCadastroUsuario.usuario.senha}" />
 
         <p:outputLabel for="confirmarSenha" value="Confirmar Senha" />
         <p:password
@@ -60,7 +62,7 @@
 
         <p:commandButton
           value="Gravar"
-          style="width: 250%; transform: translate(200px, 10px) "
+          style="width: 250%; transform: translate(200px, 10px);"
           action="#{guiCadastroUsuario.addUsuario()}"
           update="@form"
           ajax="false"/>
