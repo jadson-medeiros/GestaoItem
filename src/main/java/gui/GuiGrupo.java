@@ -7,6 +7,7 @@ package gui;
 import dao.GrupoDao;
 import dao.ItemDao;
 import dao.ModalidadeDao;
+import dao.UnidadeDao;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -15,6 +16,7 @@ import javax.ejb.EJB;
 import model.Grupo;
 import model.Item;
 import model.Modalidade;
+import model.Unidade;
 
 /**
  *
@@ -85,16 +87,6 @@ public class GuiGrupo implements Serializable
         this.idModalidade = idModalidade;
     }
     
-    public ModalidadeDao getDaoModalidade() 
-    {
-        return daoModalidade;
-    }
-
-    public void setDaoModalidade(ModalidadeDao daoModalidade) 
-    {
-        this.daoModalidade = daoModalidade;
-    }
-
     public List<Modalidade> getModalidades() 
     {
         return daoModalidade.getAllModalidade();
@@ -131,12 +123,43 @@ public class GuiGrupo implements Serializable
     }
 //#endregion
 
-//#region Itens from GUiCadastroItem
+//#region Itens from GuiCadastroItem
     @EJB
     ItemDao daoItem;
     
-    //private List<Item> itens;
+    @EJB
+    UnidadeDao daoUnidade;
+    
+    private Long idUnidade;
+    
+    private Unidade unidade;
+    
     private Item item  = new Item();
+
+    public Long getIdUnidade() 
+    {
+        return idUnidade;
+    }
+   
+    public void setIdUnidade(Long idUnidade) 
+    {
+        this.idUnidade = idUnidade;
+    }
+
+    public Unidade getUnidade() 
+    {
+        return unidade;
+    }
+
+    public void setUnidade(Unidade unidade) 
+    {
+        this.unidade = unidade;
+    }
+     
+    public List<Unidade> getUnidades() 
+    {
+        return daoUnidade.getAllUnidades();
+    }
     
     public Item getItem() 
     {
@@ -149,7 +172,17 @@ public class GuiGrupo implements Serializable
     }
     
     public String addItem(Grupo g)
-    {       
+    {                   
+        List<Unidade> unidades = daoUnidade.getAllUnidades();
+                 
+        for(Unidade u : unidades)
+        {
+            if(u.getId().equals(idUnidade)) 
+            {
+                item.setUnidade(u);
+            }
+        }
+        
         item.setGrupo(g);
         daoItem.add(item);
         
@@ -280,5 +313,45 @@ public class GuiGrupo implements Serializable
     public void setItens(List<Item> itens) 
     {
         this.itens = itens;
+    }
+        
+    public GrupoDao getDaoGrupo() 
+    {
+        return daoGrupo;
+    }
+
+    public void setDaoGrupo(GrupoDao daoGrupo) 
+    {
+        this.daoGrupo = daoGrupo;
+    }
+
+    public ModalidadeDao getDaoModalidade()
+    {
+        return daoModalidade;
+    }
+
+    public void setDaoModalidade(ModalidadeDao daoModalidade) 
+    {
+        this.daoModalidade = daoModalidade;
+    }
+
+    public ItemDao getDaoItem() 
+    {
+        return daoItem;
+    }
+
+    public void setDaoItem(ItemDao daoItem) 
+    {
+        this.daoItem = daoItem;
+    }
+
+    public UnidadeDao getDaoUnidade() 
+    {
+        return daoUnidade;
+    }
+
+    public void setDaoUnidade(UnidadeDao daoUnidade) 
+    {
+        this.daoUnidade = daoUnidade;
     }
 }

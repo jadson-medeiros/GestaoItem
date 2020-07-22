@@ -18,8 +18,7 @@
         columnClasses="p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4, p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4"
         styleClass="customPanelGrid">
         <p:outputLabel for="nome" value="Nome" />
-        <p:inputText
-          id="nome"
+        <p:inputText id="nome"
           required="true"
           placeholder="Nome"
           value="#{guiGrupo.item.nome}"/>
@@ -43,16 +42,16 @@
           value="#{guiGrupo.item.descricao}">      
         </p:inputTextarea>
         
-        <p:outputLabel for="selectOneB" value="Modalidade" />
+        <p:outputLabel for="selectOneB" value="Unidade" />
         <p:selectOneMenu id="selectOneB"
-          value="#{guiGrupo.idModalidade}"
-          required="true"        >
+            value="#{guiGrupo.idUnidade}"
+            required="true"        >
           <f:selectItem itemLabel="Selecione..." itemValue="" />
           <f:selectItems
-            value="#{guiGrupo.daoModalidade.allModalidade}"
-            var="m"
-            itemLabel="#{m.nome}"
-            itemValue="#{m.id}"/>
+            value="#{guiGrupo.daoUnidade.allUnidades}"
+            var="u"
+            itemLabel="#{u.sigla}"
+            itemValue="#{u.id}"/>
         </p:selectOneMenu>
         
       </h:panelGrid>

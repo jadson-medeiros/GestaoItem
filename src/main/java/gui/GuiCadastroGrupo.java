@@ -12,7 +12,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import model.Componente;
 import model.Grupo;
 import model.Modalidade;
 

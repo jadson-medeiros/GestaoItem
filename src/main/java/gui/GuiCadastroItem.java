@@ -32,6 +32,8 @@ public class GuiCadastroItem implements Serializable
     @EJB
     UnidadeDao daoUnidade;
     
+    private Long idUnidade;
+    
     private List<Item> itens;
     private Item item  = new Item();
  
