@@ -57,6 +57,7 @@ public class GuiCadastroGrupo implements Serializable
         //         System.out.println(m);
         //     }
         // }
+        
         grupo.setNome(nome);
         daoGrupo.add(grupo);
     }
