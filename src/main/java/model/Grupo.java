@@ -6,6 +6,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -43,4 +44,11 @@ public class Grupo extends Componente implements Serializable
     {
         this.componentes = componentes;
     }
+    
+    public void addGrupo(Grupo grupo)
+    {
+        if(componentes == null) componentes = new ArrayList();
+        
+        componentes.add(grupo);
+    }    
 }

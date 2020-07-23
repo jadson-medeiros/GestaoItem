@@ -217,7 +217,8 @@ public class GuiGrupo implements Serializable
             }
         }
         
-        daoGrupo.add(newGrupo);        
+        g.addGrupo(newGrupo);
+        daoGrupo.update(g);        
         return iniciar();
     }
     
@@ -232,8 +233,7 @@ public class GuiGrupo implements Serializable
     }
         
     public List<Grupo> getGrupos()
-    {
-        
+    {        
         return grupos;
     }
 
