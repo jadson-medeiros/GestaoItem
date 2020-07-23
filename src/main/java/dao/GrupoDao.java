@@ -45,8 +45,13 @@ public class GrupoDao
     {
         Query q = em.createQuery("select u from Grupo u order by u.nome");
         return q.getResultList();
-    }    
-
+    } 
+    
+    public List<Grupo> getAllGrupos() 
+    {
+        Query q = em.createQuery("select u from Grupo u  order by u.nome");
+        return q.getResultList();
+    }  
     public EntityManager getEm() {
         
         return em;
