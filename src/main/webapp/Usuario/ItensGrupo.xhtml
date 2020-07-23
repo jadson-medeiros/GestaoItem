@@ -36,11 +36,13 @@
             </p:column>
             
             <p:column style="width: 25%;">
-                <p:commandButton
+                <p:commandButton id="Delete"
                     ajax="false"
                     class="iconOnly"
                     style="width: 25%; margin-top: 10px; font-size: 150%;" icon="pi pi-trash"
                     action="#{guiGrupo.removeItem(item)}"/>
+                <p:tooltip id="toolTipFade3" for="Delete" value="Remover o grupo." position="top"/>          
+          
             </p:column>
         </p:dataTable>
             
