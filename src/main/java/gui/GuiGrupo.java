@@ -11,8 +11,10 @@ import dao.UnidadeDao;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
+import model.Componente;
 import model.Grupo;
 import model.Item;
 import model.Modalidade;
@@ -196,7 +198,22 @@ public class GuiGrupo implements Serializable
         
     public String iniciar() 
     {
-        this.grupos = daoGrupo.getAllGrupo();
+        List<Grupo> grupoList = daoGrupo.getAllGrupos();
+        List<Grupo> newGrupoList = daoGrupo.getAllGrupos();
+        
+        for (Grupo g : grupoList)
+        {
+            if(g.getComponentes().size() > 0)
+            {
+                for (Componente c : g.getComponentes())
+                {
+                    if(newGrupoList.contains(c)) newGrupoList.remove(c);
+                }
+            }             
+        }
+        
+        this.grupos = newGrupoList;
+        
         return "GrupoList";
     }
     
@@ -263,7 +280,7 @@ public class GuiGrupo implements Serializable
     }
     
     public String addNewGrupo()
-    {        
+    {
         return "CadastroGrupo";
     }
     

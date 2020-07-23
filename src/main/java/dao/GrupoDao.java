@@ -28,7 +28,8 @@ public class GrupoDao
     
     public void add(Grupo grupo) 
     {
-        em.persist(grupo);
+        if (grupo.getNome() != null)
+            em.persist(grupo);
     }
     
     public void update(Grupo grupo)
@@ -41,15 +42,15 @@ public class GrupoDao
         em.remove(em.merge(grupo));
     }
     
-    public List<Grupo> getAllGrupo() 
+    public List<Grupo> getAllGrupoByGrupo() 
     {
-        Query q = em.createQuery("select u from Grupo u order by u.nome");
+        Query q = em.createQuery("select g from Grupo g where g.nome is not null by u.nome");
         return q.getResultList();
     } 
     
     public List<Grupo> getAllGrupos() 
     {
-        Query q = em.createQuery("select u from Grupo u  order by u.nome");
+        Query q = em.createQuery("select g from Grupo g order by g.nome");
         return q.getResultList();
     }  
     public EntityManager getEm() {
