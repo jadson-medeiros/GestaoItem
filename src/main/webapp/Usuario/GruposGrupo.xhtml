@@ -30,34 +30,20 @@
         <p:column style="width: 20%;">
           <p:commandButton
             class="iconOnly"
-            action="#{guiGrupo.itensList(gp)}"
+            action="#{guiGrupo.itensList(grupo)}"
             style="width: 25%; margin: 10px 0px 0px 13px; font-size: 150%;"
             icon="pi pi-pencil"/>
           <p:commandButton
             class="iconOnly"
-            action="#{guiGrupo.addGrupoByGrupo(gp)}"
+            action="#{guiGrupo.addGrupoByGrupo(grupo)}"
             style="width: 25%; margin-top: 10px; font-size: 150%;"
             icon="pi pi-plus"/>
           <p:commandButton
             class="iconOnly"
-            action="#{guiGrupo.removeGrupo(gp)}"
+            action="#{guiGrupo.removeGrupo(grupo)}"
             style="width: 25%; margin-top: 10px; font-size: 150%;"
             icon="pi pi-trash"/>
         </p:column>
-        <!-- <p:column style="width: 30%;">
-                <p:commandButton
-                    ajax="false"
-                    value="Novo Grupo"
-                    action="#{guiGrupo.addGrupoByGrupo(gp)}"/>
-                <p:commandButton
-                    ajax="false"
-                    value="Excluir"
-                    action="#{guiGrupo.removeGrupo(gp)}"/>
-                <p:commandButton
-                    ajax="false"
-                    value="Itens"
-                    action="#{guiGrupo.itensList(gp)}"/>
-            </p:column> -->
       </p:dataTable>
 
       <p:commandButton
@@ -65,8 +51,7 @@
         style="width: 10%; margin-top: 10px; margin: 5px;"
         value="Novo Grupo"
         action="#{guiGrupo.addNewGrupoByGrupo(guiGrupo.grupo)}"
-        styleClass="new-btn"
-      />
+        styleClass="new-btn"/>
     </h:form>
   </h:body>
 </ui:decorate>

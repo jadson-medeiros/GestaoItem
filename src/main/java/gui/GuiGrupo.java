@@ -266,8 +266,15 @@ public class GuiGrupo implements Serializable
     
     public String gruposList(Grupo g)
     {
-        this.grupo = g;
-        //grupos = daoGrupo.(g);
+        this.grupo = daoGrupo.getGrupo(g);
+        List<Grupo> gruposLista = new ArrayList();
+        
+        for(Componente c : grupo.getComponentes())
+        {
+            gruposLista.add((Grupo) c);
+        }
+               
+        this.gruposGrupo = gruposLista;
         return "GruposGrupo";
     }
     

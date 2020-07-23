@@ -42,18 +42,21 @@ public class GrupoDao
         em.remove(em.merge(grupo));
     }
     
-    public List<Grupo> getAllGrupoByGrupo() 
-    {
-        Query q = em.createQuery("select g from Grupo g where g.nome is not null by u.nome");
-        return q.getResultList();
-    } 
-    
     public List<Grupo> getAllGrupos() 
     {
-        Query q = em.createQuery("select g from Grupo g order by g.nome");
+        Query q = em.createQuery("select g from Grupo g where g.nome is not null order by g.nome");
         return q.getResultList();
     }  
-    public EntityManager getEm() {
+    
+    public Grupo getGrupo(Grupo grupo) 
+    {
+        Query q = em.createQuery("select g from Grupo g where g.id = :id");
+        q.setParameter("id", grupo.getId());
+        return (Grupo) q.getSingleResult();        
+    } 
+    
+    public EntityManager getEm()
+    {
         
         return em;
     }
