@@ -31,113 +31,152 @@ public class GuiGrupo implements Serializable
     /**
      * Creates a new instance of GuiLogin
      */
-    private String usuario;    
-    private String senha; 
-    private List<Grupo> grupos;
-    private List<Item> itens;
-    private Grupo grupo;
-
-    private List<Grupo> gruposGrupo;
     @EJB
     GrupoDao daoGrupo;
-    
-//#region Itens from GuiCadastroGrupo    
+     
     @EJB
     ModalidadeDao daoModalidade;
-    
-    //private Grupo grupo = new Grupo();
-    private Long id;
-    
-    private Long idModalidade;
-
-    private String nome;
         
-    private Modalidade modalidade;
-
-    public void addGrupo()
-    {        
-        List<Modalidade> modalidades = daoModalidade.getAllModalidade();
-        for(Modalidade m : modalidades)
-        {
-            if(m.getId().equals(idModalidade)) 
-            {
-                grupo.setModalidade(m);
-                System.out.println(m);
-            }
-        }
-        
-        daoGrupo.add(grupo);
-    }
-
-    public List<Grupo> getGruposGrupo() 
-    {
-        return gruposGrupo;
-    }
-
-    public void setGruposGrupo(List<Grupo> gruposGrupo) 
-    {
-        this.gruposGrupo = gruposGrupo;
-    }
-       
-    public Long getIdModalidade() 
-    {
-        return idModalidade;
-    }
-
-    public void setIdModalidade(Long idModalidade) 
-    {
-        this.idModalidade = idModalidade;
-    }
-    
-    public List<Modalidade> getModalidades() 
-    {
-        return daoModalidade.getAllModalidade();
-    }
-
-    public Modalidade getModalidade() 
-    {
-        return modalidade;
-    }
-
-    public void setModalidade(Modalidade Modalidade) 
-    {
-        this.modalidade = Modalidade;
-    }
-
-    public Long getId()
-    {
-        return id;
-    }
-
-    public void setId(Long id) 
-    {
-        this.id = id;
-    }
-
-    public String getNome()
-    {
-        return nome;
-    }
-
-    public void setNome(String nome) 
-    {
-        this.nome = nome;
-    }
-//#endregion
-
-//#region Itens from GuiCadastroItem
     @EJB
     ItemDao daoItem;
     
     @EJB
     UnidadeDao daoUnidade;
+            
+    private String usuario;    
+    private String senha; 
+    private String nome;
     
-    private Long idUnidade;
+    private List<Grupo> grupos;
+    private List<Item> itens;
+    private List<Grupo> gruposGrupo;
     
+    private Grupo grupo;
+    private Modalidade modalidade;
     private Unidade unidade;
-    
     private Item item  = new Item();
+    
+    private Long idModalidade;
+    private Long id;
+    private Long idUnidade;
 
+    public GuiGrupo() 
+    {
+        
+    }
+    
+    public String iniciar() 
+    {
+        List<Grupo> grupoList = daoGrupo.getAllGrupos();
+        List<Grupo> newGrupoList = daoGrupo.getAllGrupos();
+        
+        for (Grupo g : grupoList)
+        {
+            if(g.getComponentes().size() > 0)
+            {
+                for (Componente c : g.getComponentes())
+                {
+                    if(newGrupoList.contains(c)) newGrupoList.remove(c);
+                }
+            }             
+        }
+        
+        this.grupos = newGrupoList;
+        
+        return "GrupoList";
+    }
+    
+    public String addGrupo(Grupo g)
+    {
+        Grupo newGrupo = new Grupo();
+        
+        if (g == null)                
+        {
+            newGrupo.setNome(nome);
+            daoGrupo.add(newGrupo);            
+        }
+        else
+        {
+            newGrupo.setNome(nome);
+
+            g.addGrupo(newGrupo);
+            daoGrupo.update(g);             
+        }       
+        
+        return iniciar();
+    }
+    
+    public String addItem(Grupo g)
+    {                   
+        List<Unidade> unidades = daoUnidade.getAllUnidades();
+                 
+        for(Unidade u : unidades)
+        {
+            if(u.getId().equals(idUnidade)) 
+            {
+                item.setUnidade(u);
+            }
+        }
+        
+        item.setGrupo(g);
+        daoItem.add(item);
+        
+        return itensList(g);
+    }
+
+    public String removeGrupo(Grupo g) 
+    {
+        daoGrupo.remove(g);
+        return iniciar();
+    } 
+    
+    public String removeItem(Item i) 
+    {
+        daoItem.remove(i);
+        
+        return iniciar();
+    } 
+    
+    public String itensList(Grupo g)
+    {
+        itens = daoGrupo.getItens(g);
+        this.grupo = g;
+        return "ItensGrupo";
+    }
+    
+    public String gruposList(Grupo g)
+    {
+        Grupo gp = daoGrupo.getGrupo(g);
+        List<Grupo> gruposLista = new ArrayList();
+        
+        for(Componente c : gp.getComponentes())
+        {
+            gruposLista.add((Grupo) c);
+        }
+        
+        this.grupo = gp;
+        this.gruposGrupo = gruposLista;
+        return "GruposGrupo";
+    }
+    
+    public String addNewGrupoByGrupo(Grupo g)
+    {        
+        this.grupo = g;
+        return "CadastroGrupo";
+    }
+    
+    public String addNewGrupo()
+    {
+        return "CadastroGrupo";
+    }
+    
+    public String addNewItemByGrupo(Grupo g)
+    {        
+        this.grupo = g;
+        return "CadastroItem";
+    }
+       
+    // Getters and Setters
     public Long getIdUnidade() 
     {
         return idUnidade;
@@ -173,70 +212,6 @@ public class GuiGrupo implements Serializable
         this.item = item;
     }
     
-    public String addItem(Grupo g)
-    {                   
-        List<Unidade> unidades = daoUnidade.getAllUnidades();
-                 
-        for(Unidade u : unidades)
-        {
-            if(u.getId().equals(idUnidade)) 
-            {
-                item.setUnidade(u);
-            }
-        }
-        
-        item.setGrupo(g);
-        daoItem.add(item);
-        
-        return itensList(g);
-    }
-//#endregion
-    public GuiGrupo() 
-    {
-        
-    }
-        
-    public String iniciar() 
-    {
-        List<Grupo> grupoList = daoGrupo.getAllGrupos();
-        List<Grupo> newGrupoList = daoGrupo.getAllGrupos();
-        
-        for (Grupo g : grupoList)
-        {
-            if(g.getComponentes().size() > 0)
-            {
-                for (Componente c : g.getComponentes())
-                {
-                    if(newGrupoList.contains(c)) newGrupoList.remove(c);
-                }
-            }             
-        }
-        
-        this.grupos = newGrupoList;
-        
-        return "GrupoList";
-    }
-    
-    public String addGrupoByGrupo(Grupo g)
-    {        
-        List<Modalidade> modalidades = daoModalidade.getAllModalidade();
-                
-        Grupo newGrupo = new Grupo();
-        newGrupo.setNome(nome);
-        
-        for(Modalidade m : modalidades)
-        {
-            if(m.getId().equals(idModalidade)) 
-            {
-                newGrupo.setModalidade(m);
-            }
-        }
-        
-        g.addGrupo(newGrupo);
-        daoGrupo.update(g);        
-        return iniciar();
-    }
-    
     public Grupo getGrupo() 
     {
         return grupo;
@@ -256,57 +231,7 @@ public class GuiGrupo implements Serializable
     {
         this.grupos = grupos;
     }
-     
-    public String itensList(Grupo g)
-    {
-        itens = daoGrupo.getItens(g);
-        this.grupo = g;
-        return "ItensGrupo";
-    }
-    
-    public String gruposList(Grupo g)
-    {
-        this.grupo = daoGrupo.getGrupo(g);
-        List<Grupo> gruposLista = new ArrayList();
-        
-        for(Componente c : grupo.getComponentes())
-        {
-            gruposLista.add((Grupo) c);
-        }
-               
-        this.gruposGrupo = gruposLista;
-        return "GruposGrupo";
-    }
-    
-    public String addNewGrupoByGrupo(Grupo g)
-    {        
-        this.grupo = g;
-        return "CadastroGrupo";
-    }
-    
-    public String addNewGrupo()
-    {
-        return "CadastroGrupo";
-    }
-    
-    public String addNewItemByGrupo(Grupo g)
-    {        
-        this.grupo = g;
-        return "CadastroItem";
-    }
-
-    public String removeGrupo(Grupo g) 
-    {
-        daoGrupo.remove(g);
-        return iniciar();
-    } 
-    
-    public String removeItem(Item i) 
-    {
-        daoItem.remove(i);
-        return iniciar();
-    } 
-    
+         
     public String getUsuario() 
     {
         return usuario;
@@ -375,5 +300,60 @@ public class GuiGrupo implements Serializable
     public void setDaoUnidade(UnidadeDao daoUnidade) 
     {
         this.daoUnidade = daoUnidade;
+    }
+    
+    public List<Grupo> getGruposGrupo() 
+    {
+        return gruposGrupo;
+    }
+
+    public void setGruposGrupo(List<Grupo> gruposGrupo) 
+    {
+        this.gruposGrupo = gruposGrupo;
+    }
+       
+    public Long getIdModalidade() 
+    {
+        return idModalidade;
+    }
+
+    public void setIdModalidade(Long idModalidade) 
+    {
+        this.idModalidade = idModalidade;
+    }
+    
+    public List<Modalidade> getModalidades() 
+    {
+        return daoModalidade.getAllModalidade();
+    }
+
+    public Modalidade getModalidade() 
+    {
+        return modalidade;
+    }
+
+    public void setModalidade(Modalidade Modalidade) 
+    {
+        this.modalidade = Modalidade;
+    }
+
+    public Long getId()
+    {
+        return id;
+    }
+
+    public void setId(Long id) 
+    {
+        this.id = id;
+    }
+
+    public String getNome()
+    {
+        return nome;
+    }
+
+    public void setNome(String nome) 
+    {
+        this.nome = nome;
     }
 }

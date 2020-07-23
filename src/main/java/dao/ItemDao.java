@@ -26,7 +26,8 @@ public class ItemDao
     
     public void add(Item item) 
     {
-        em.persist(item);
+        if (item.getNome() != null)
+            em.persist(item);
     }
     
     public void update(Item item)

@@ -19,21 +19,21 @@ import javax.persistence.OneToMany;
 @Entity
 public class Grupo extends Componente implements Serializable 
 {
-    @ManyToOne
-    private Modalidade modalidade;
+    //@ManyToOne
+    //private Modalidade modalidade;
     
     @OneToMany
     private List<Componente> componentes;
 
-    public Modalidade getModalidade() 
-    {
-        return modalidade;
-    }
+    // public Modalidade getModalidade() 
+    // {
+    //     return modalidade;
+    // }
 
-    public void setModalidade(Modalidade modalidade) 
-    {
-        this.modalidade = modalidade;
-    }
+    // public void setModalidade(Modalidade modalidade) 
+    // {
+    //     this.modalidade = modalidade;
+    // }
 
     public List<Componente> getComponentes() 
     {

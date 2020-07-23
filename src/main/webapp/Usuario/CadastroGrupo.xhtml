@@ -24,22 +24,12 @@
           placeholder="Nome"
           value="#{guiGrupo.nome}"/>
 
-        <p:outputLabel for="selectOneB" value="Modalidade" />
-        <p:selectOneMenu id="selectOneB"
-          value="#{guiGrupo.idModalidade}"
-          required="true"        >
-          <f:selectItem itemLabel="Selecione..." itemValue="" />
-          <f:selectItems
-            value="#{guiGrupo.daoModalidade.allModalidade}"
-            var="m"
-            itemLabel="#{m.nome}"
-            itemValue="#{m.id}"/>
-        </p:selectOneMenu>
+        
       </h:panelGrid>
       <p:commandButton
         value="Gravar"
         style="width: 25%; margin-top: 10px;"
-        action="#{guiGrupo.addGrupoByGrupo(guiGrupo.grupo)}"
+        action="#{guiGrupo.addGrupo(guiGrupo.grupo)}"
         update="@form"
         ajax="false" />
     </h:form>

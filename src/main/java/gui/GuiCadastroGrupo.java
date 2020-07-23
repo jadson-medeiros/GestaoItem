@@ -48,15 +48,15 @@ public class GuiCadastroGrupo implements Serializable
 
     public void addGrupo()
     {        
-        List<Modalidade> modalidades = daoModalidade.getAllModalidade();
-        System.out.println(idModalidade);
-        for(Modalidade m : modalidades){
-            System.out.println(m.getId());
-            if(m.getId().equals(idModalidade)) {
-                grupo.setModalidade(m);
-                System.out.println(m);
-            }
-        }
+        //List<Modalidade> modalidades = daoModalidade.getAllModalidade();
+        // System.out.println(idModalidade);
+        // for(Modalidade m : modalidades){
+        //     System.out.println(m.getId());
+        //     if(m.getId().equals(idModalidade)) {
+        //         grupo.setModalidade(m);
+        //         System.out.println(m);
+        //     }
+        // }
         grupo.setNome(nome);
         daoGrupo.add(grupo);
     }
