@@ -16,7 +16,7 @@
             value="#{guiGrupo.itens}"
             rowKey="#{item.id}"
             scrollable="true" 
-            scrollHeight="300"
+            scrollHeight="400"
             emptyMessage="Nenhum item cadastrado para o grupo #{guiGrupo.grupo.nome} ">
             <f:facet name="header">
                 <h4>Itens do Grupo #{guiGrupo.grupo.nome}</h4>
@@ -45,10 +45,10 @@
         </p:dataTable>
             
         <p:commandButton
-          ajax="false"
-          value="Novo Item"
-          styleClass="new-btn"
-          action="#{guiGrupo.addNewItemByGrupo(guiGrupo.grupo)}"/>
+            ajax="false"
+            value="Novo Item"
+            styleClass="new-btn"
+            action="#{guiGrupo.addNewItemByGrupo(guiGrupo.grupo)}"/>
         </h:form>
     </h:body>
 </ui:decorate>
