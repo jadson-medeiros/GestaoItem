@@ -223,14 +223,12 @@ public class GuiGrupo implements Serializable
                 
         Grupo newGrupo = new Grupo();
         newGrupo.setNome(nome);
-        //newGrupo.setComponentes(g.getComponentes());
         
         for(Modalidade m : modalidades)
         {
             if(m.getId().equals(idModalidade)) 
             {
                 newGrupo.setModalidade(m);
-                System.out.println(m);
             }
         }
         
