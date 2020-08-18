@@ -9,43 +9,61 @@
   template="template.xhtml">
     
   <h:body>
-    <h:form styleClass="form-ui-gp form-ui-item">
+    <h:form 
+        styleClass="form-ui-gp form-ui-item">
       <p:dataTable id="tabela"
         var="grupo"
         value="#{guiGrupo.gruposGrupo}"
         rowKey="#{grupo.id}"
         scrollable="true" 
-        scrollHeight="400"
+        scrollHeight="450"
         emptyMessage="Nenhum grupo cadastrado para o grupo #{guiGrupo.grupo.nome} ">
           
-        <f:facet name="header">
+        <f:facet 
+            name="header">
             <h4>Grupos do Grupo #{guiGrupo.grupo.nome}</h4>
         </f:facet>
           
-        <p:ajax event="sort" skipChildren="false" />   
-        <p:column headerText="Nome" sortBy="#{grupo.nome}" style="width: 80%;">
-          <h:outputText value="#{grupo.nome}" />
+        <p:ajax 
+            event="sort" 
+            skipChildren="false" />   
+        <p:column
+            style="width: 80%;"
+            sortBy="#{grupo.nome}"
+            headerText="Nome"  >
+          <h:outputText 
+              value="#{grupo.nome}" />
         </p:column>
 
-        <p:column style="width: 20%;">
+        <p:column 
+            style="width: 20%;">
           <p:commandButton id="addItem"
                 class="iconOnly" 
                 action="#{guiGrupo.itensList(grupo)}"
-                style="width: 25%; margin: 10px 0px 0px 14px; font-size: 150%;" 
-                icon="pi pi-pencil"/>
-          <p:tooltip id="toolTipFade" for="addItem" value="Inserir novo Item ao grupo." position="top"/>
+                icon="pi pi-pencil"
+                style="width: 25%; margin: 10px 0px 0px 14px; font-size: 150%;" />
+          <p:tooltip id="toolTipFade" 
+                for="addItem" 
+                value="Inserir novo Item ao grupo." 
+                position="top"/>
           <p:commandButton id="addGrupo"
                 class="iconOnly" 
                 action="#{guiGrupo.gruposList(grupo)}"
                 style="width: 25%; margin: 10px 0px 0px 14px; font-size: 150%;" 
                 icon="pi pi-plus"/>
-          <p:tooltip id="toolTipFade2" for="addGrupo" value="Inserir novo Grupo ao grupo." position="top"/>
+          <p:tooltip id="toolTipFade2" 
+                for="addGrupo" 
+                value="Inserir novo Grupo ao grupo." 
+                position="top"/>
           <p:commandButton id="Delete"
                 class="iconOnly" 
                 action="#{guiGrupo.removeGrupo(grupo)}"
                 style="width: 25%; margin: 10px 0px 0px 14px; font-size: 150%;" 
                 icon="pi pi-trash"/>
-          <p:tooltip id="toolTipFade3" for="Delete" value="Remover o grupo." position="top"/>
+          <p:tooltip id="toolTipFade3" 
+                for="Delete" 
+                value="Remover o grupo." 
+                position="top"/>
         </p:column>
       </p:dataTable>
       <p:commandButton
