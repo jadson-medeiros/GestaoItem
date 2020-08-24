@@ -8,7 +8,14 @@
   xmlns:p="http://primefaces.org/ui"
   template="template.xhtml">
   <h:body>
-    <h:form styleClass="form-ui form-ui-item">
+      
+      <p:breadCrumb>
+            <p:menuitem value="Grupos" url="GrupoList.xhtml" />
+            <p:menuitem value="Itens do Grupo" url="ItensGrupo.xhtml" />
+            <p:menuitem value="Cadastrar Item" url="#" />
+      </p:breadCrumb>
+      
+    <h:form styleClass="form-ui form-ui-item" style="padding: 25px;">
       <br />
       <h1>Cadastro de Item</h1>
       <br />

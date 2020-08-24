@@ -9,7 +9,12 @@
     template="template.xhtml">
     
     <h:body>
-        <h:form styleClass="form-ui-gp form-ui-item">            
+        <p:breadCrumb>
+            <p:menuitem value="Grupos" url="GrupoList.xhtml" />
+            <p:menuitem value="Itens do Grupo" url="#" />
+        </p:breadCrumb>
+        
+        <h:form styleClass="form-ui-gp form-item-gp">            
         
         <p:dataTable id="tabela"
             var="item"

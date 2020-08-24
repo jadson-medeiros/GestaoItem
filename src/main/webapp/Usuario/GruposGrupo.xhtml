@@ -9,6 +9,12 @@
   template="template.xhtml">
     
   <h:body>
+      
+      <p:breadCrumb>
+            <p:menuitem value="Grupos" url="GrupoList.xhtml" />
+            <p:menuitem value="Grupos do Grupo" url="GruposGrupo.xhtml" />
+      </p:breadCrumb>
+      
     <h:form 
         styleClass="form-ui-gp form-ui-item">
       <p:dataTable id="tabela"
@@ -68,7 +74,6 @@
       </p:dataTable>
       <p:commandButton
         ajax="false"
-        style="width: 10%; margin-top: 10px; margin: 5px;"
         value="Novo Grupo"
         action="#{guiGrupo.addNewGrupoByGrupo(guiGrupo.grupo)}"
         styleClass="new-btn"/>
