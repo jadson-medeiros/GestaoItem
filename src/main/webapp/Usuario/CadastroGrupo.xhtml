@@ -9,9 +9,15 @@
   template="template.xhtml">
 
   <h:body>
-    <h:form styleClass="form-ui form-ui-item">
+      
+      <p:breadCrumb>
+        <p:menuitem value="Grupos" url="#" />
+        <p:menuitem value="Novo Grupo" url="#" />
+      </p:breadCrumb>
+      
+    <h:form styleClass="form-ui form-cadastro-gp">
       <br />
-      <h1>Cadastro de Grupo</h1>
+      <h3>Cadastro de Grupo</h3>
       <br />
       
       <h:panelGrid
@@ -23,9 +29,8 @@
           required="true"
           placeholder="Nome"
           value="#{guiGrupo.nome}"/>
-
-        
       </h:panelGrid>
+      
       <p:commandButton
         value="Gravar"
         style="width: 25%; margin-top: 10px;"
