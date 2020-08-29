@@ -43,13 +43,22 @@ public class UsuarioDao
     {
         Query q = em.createQuery("select u from Usuario u order by u.nome");
         return q.getResultList();
-    }    
+    }  
+    
+    public Usuario getUsuario(String usuario) 
+    {
+        Query q = em.createQuery("select u from Usuario u where u.usuario = :usuario");
+        q.setParameter("usuario", usuario);
+        return (Usuario) q.getSingleResult();
+    } 
 
-    public EntityManager getEm() {
+    public EntityManager getEm()
+    {
         return em;
     }
 
-    public void setEm(EntityManager em) {
+    public void setEm(EntityManager em) 
+    {
         this.em = em;
     }
 }

@@ -61,8 +61,7 @@ public class GuiGrupo implements Serializable
     private Long idUnidade;
 
     public GuiGrupo() 
-    {
-        
+    {        
     }
     
     public String iniciar() 

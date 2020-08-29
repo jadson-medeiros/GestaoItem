@@ -8,8 +8,7 @@
   xmlns:p="http://primefaces.org/ui"
   template="template.xhtml">
     
-  <h:body>
-      
+  <h:body>      
       <p:breadCrumb>
             <p:menuitem value="Grupos" url="GrupoList.xhtml" />
             <p:menuitem value="Grupos do Grupo" url="GruposGrupo.xhtml" />
@@ -29,7 +28,7 @@
             name="header">
             <h4>Grupos do Grupo #{guiGrupo.grupo.nome}</h4>
         </f:facet>
-          
+                      
         <p:ajax 
             event="sort" 
             skipChildren="false" />   

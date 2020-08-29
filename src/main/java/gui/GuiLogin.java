@@ -4,9 +4,12 @@
  * and open the template in the editor.
  */
 package gui;
+import dao.UsuarioDao;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.ejb.EJB;
+import model.Usuario;
 
 /**
  *
@@ -18,7 +21,10 @@ public class GuiLogin implements Serializable
 {
     /**
      * Creates a new instance of GuiLogin
-     */
+     */    
+    @EJB
+    UsuarioDao daoUsuario;
+    
     private String usuario;    
     private String senha; 
     
@@ -28,9 +34,39 @@ public class GuiLogin implements Serializable
     
     public String logar()
     {
-        return "./Cadastro.xhtml";
-    }
+        Usuario usuario = daoUsuario.getUsuario(this.usuario);
+        if (usuario.getSenha().equals(encrypt(this.usuario, this.senha))) 
+            return "./Cadastro.xhtml";
         
+        return "";
+    }
+    
+    public String encrypt(String login, String senha) 
+    {
+        String sign = senha;
+        try {
+            java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+            md.update(sign.getBytes());
+            byte[] hash = md.digest();
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < hash.length; i++) 
+            {
+                if ((0xff & hash[i]) < 0x10) 
+                {
+                    hexString.append("0" + Integer.toHexString((0xFF & hash[i])));
+                } else {
+                    hexString.append(Integer.toHexString(0xFF & hash[i]));
+                }
+            }
+            
+            sign = hexString.toString();
+        } catch (Exception nsae) {
+            nsae.printStackTrace();
+        }
+        
+        return sign;
+    }
+    
     public String getUsuario() 
     {
         return usuario;
