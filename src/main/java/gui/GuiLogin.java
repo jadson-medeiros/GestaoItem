@@ -9,6 +9,8 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import model.Usuario;
 
 /**
@@ -38,7 +40,18 @@ public class GuiLogin implements Serializable
         if (usuario.getSenha().equals(encrypt(this.usuario, this.senha))) 
             return "./Cadastro.xhtml";
         
+        mostrarMensagem("login ou senha invalida");
+        
         return "";
+    }
+    
+    public void mostrarMensagem(String mensagem) 
+    {
+        FacesContext context = FacesContext.getCurrentInstance();
+        FacesMessage message = new FacesMessage();
+        message.setDetail(mensagem);
+        message.setSummary("");
+        context.addMessage(null, message);
     }
     
     public String encrypt(String login, String senha) 
