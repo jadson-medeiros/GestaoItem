@@ -11,6 +11,8 @@ import javax.inject.Named;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import model.Usuario;
@@ -32,18 +34,18 @@ public class UsuarioRest {
     @POST
     @Path("auth")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response validarLogin(String res) 
+    @Produces(MediaType.APPLICATION_JSON)    
+    public Response validarLogin(@PathParam("usuario") String user, @PathParam("password") String password) 
     {        
-        JSONObject obj = new JSONObject(res);
         JSONObject response = new JSONObject();
-        Usuario usuario = daoUsuario.getUsuario(obj.getString("user"));
+        Usuario usuario = daoUsuario.getUsuario(user);
         
         if(usuario == null){
             response.put("token", "404");
             return Response.status(404).entity(response.toString()).build();
         }
         
-        if (usuario.getSenha().equals(encrypt(obj.getString("user"), obj.getString("password")))) {
+        if (usuario.getSenha().equals(encrypt(user, password))) {
             response.put("token", "200");
             response.put("nome", usuario.getNome());
             response.put("user", usuario.getUsuario());
