@@ -7,11 +7,10 @@ package service;
 
 import dao.UsuarioDao;
 import javax.ejb.EJB;
-import javax.inject.Named;
+import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -23,10 +22,9 @@ import org.primefaces.shaded.json.JSONObject;
  * @author jadson
  */
 
-@Named
+@Stateless
 @Path("user")
-@Consumes(MediaType.APPLICATION_JSON)
-public class UsuarioRest {
+public class UsuarioRest  {
     
     @EJB
     UsuarioDao daoUsuario;
@@ -35,9 +33,11 @@ public class UsuarioRest {
     @Path("auth")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)    
-    public Response validarLogin(@PathParam("usuario") String user, @PathParam("password") String password) 
+    public Response validarLogin(String res) 
     {        
-        JSONObject response = new JSONObject();
+        JSONObject response = new JSONObject(res);
+        String user = response.getString("user");
+        String password = response.getString("password");
         Usuario usuario = daoUsuario.getUsuario(user);
         
         if(usuario == null){
@@ -45,7 +45,8 @@ public class UsuarioRest {
             return Response.status(404).entity(response.toString()).build();
         }
         
-        if (usuario.getSenha().equals(encrypt(user, password))) {
+        if (usuario.getSenha().equals(encrypt(user, password))) 
+        {
             response.put("token", "200");
             response.put("nome", usuario.getNome());
             response.put("user", usuario.getUsuario());
