@@ -60,11 +60,13 @@ public class UsuarioRest  {
     private String encrypt(String login, String senha) 
     {
         String sign = senha;
-        try {
+        try
+        {
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
             md.update(sign.getBytes());
             byte[] hash = md.digest();
             StringBuffer hexString = new StringBuffer();
+            
             for (int i = 0; i < hash.length; i++) 
             {
                 if ((0xff & hash[i]) < 0x10) 
@@ -76,7 +78,8 @@ public class UsuarioRest  {
             }
             
             sign = hexString.toString();
-        } catch (Exception nsae) {
+        } catch (Exception nsae) 
+        {
             nsae.printStackTrace();
         }
         
