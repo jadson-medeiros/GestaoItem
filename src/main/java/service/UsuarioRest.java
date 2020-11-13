@@ -36,7 +36,7 @@ public class UsuarioRest  {
     public Response validarLogin(String res) 
     {        
         JSONObject response = new JSONObject(res);
-        String user = response.getString("user");
+        String user = response.getString("email");
         String password = response.getString("password");
         Usuario usuario = daoUsuario.getUsuario(user);
         

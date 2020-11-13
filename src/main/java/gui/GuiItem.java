@@ -4,14 +4,12 @@
  * and open the template in the editor.
  */
 package gui;
-import dao.GrupoDao;
 import dao.ItemDao;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import model.Grupo;
 import model.Item;
 
 /**

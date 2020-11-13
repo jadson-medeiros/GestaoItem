@@ -54,6 +54,13 @@ public class GrupoDao
         return (Grupo) q.getSingleResult();        
     } 
     
+    public Grupo getGrupoById(Integer grupoId) 
+    {
+        Query q = em.createQuery("select g from Grupo g where g.id = :id");
+        q.setParameter("id", grupoId);
+        return (Grupo) q.getSingleResult();        
+    } 
+    
     public EntityManager getEm()
     {
         

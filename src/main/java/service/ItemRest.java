@@ -5,16 +5,20 @@
  */
 package service;
 
-import dao.UsuarioDao;
+import dao.GrupoDao;
+import dao.ItemDao;
+import dao.UnidadeDao;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import model.Usuario;
+import model.Grupo;
+import model.Item;
+import model.Unidade;
 import org.primefaces.shaded.json.JSONObject;
 
 /**
@@ -23,66 +27,57 @@ import org.primefaces.shaded.json.JSONObject;
  */
 
 @Stateless
-@Path("user")
-public class UsuarioRest  {
+@Path("item")
+public class ItemRest  
+{    
+    @EJB
+    ItemDao daoItem;
+       
+    @EJB
+    GrupoDao daoGrupo;
     
     @EJB
-    UsuarioDao daoUsuario;
-        
+    UnidadeDao daoUnidade;
+    
     @POST
-    @Path("auth")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)    
-    public Response validarLogin(String res) 
+    @Path("add")
+    @Consumes(MediaType.APPLICATION_JSON)  
+    public Response addItem(String res) 
     {        
         JSONObject response = new JSONObject(res);
-        String user = response.getString("user");
-        String password = response.getString("password");
-        Usuario usuario = daoUsuario.getUsuario(user);
+        Integer grupoId = Integer.parseInt(response.getString("grupoId"));
+        Integer idUnidade = Integer.parseInt(response.getString("idUnidade"));
         
-        if(usuario == null){
-            response.put("token", "404");
-            return Response.status(404).entity(response.toString()).build();
-        }
+        String nome = response.getString("nome");
+        String descricao = response.getString("descricao");
+        String codComprasNet = response.getString("codComprasNet");
         
-        if (usuario.getSenha().equals(encrypt(user, password))) 
+        if (grupoId != null || grupoId != 0)
         {
-            response.put("token", "200");
-            response.put("nome", usuario.getNome());
-            response.put("user", usuario.getUsuario());
-            return Response.status(200).entity(response.toString()).build();
-        }
-       
-        response.put("token", "404");
-        return Response.status(404).entity(response.toString()).build();
-    }
-    
-    private String encrypt(String login, String senha) 
-    {
-        String sign = senha;
-        try
-        {
-            java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
-            md.update(sign.getBytes());
-            byte[] hash = md.digest();
-            StringBuffer hexString = new StringBuffer();
-            
-            for (int i = 0; i < hash.length; i++) 
+            Grupo grupo = daoGrupo.getGrupoById(grupoId);            
+            List<Unidade> unidades = daoUnidade.getAllUnidades();
+            Item item = new Item();
+            for(Unidade u : unidades)
             {
-                if ((0xff & hash[i]) < 0x10) 
+                if(u.getId().equals(idUnidade)) 
                 {
-                    hexString.append("0" + Integer.toHexString((0xFF & hash[i])));
-                } else {
-                    hexString.append(Integer.toHexString(0xFF & hash[i]));
+                    item.setUnidade(u);
                 }
             }
             
-            sign = hexString.toString();
-        } catch (Exception nsae) 
-        {
-            nsae.printStackTrace();
+            item.setNome(nome);
+            item.setDescricao(descricao);
+            item.setCodigoComprasnet(codComprasNet);
+            item.setGrupo(grupo);
+            daoItem.add(item);
+
+            response.put("token", "200");
+            response.put("message", "Item criado.");
+            return Response.status(200).entity(response.toString()).build();            
         }
-        
-        return sign;
+       
+        response.put("token", "404");
+        response.put("message", "Error ao criar o Item.");
+        return Response.status(404).entity(response.toString()).build();
     }    
 }
