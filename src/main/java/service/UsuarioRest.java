@@ -8,9 +8,12 @@ package service;
 import dao.UsuarioDao;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Named;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -24,37 +27,25 @@ import org.primefaces.shaded.json.JSONObject;
 
 @Stateless
 @Path("user")
+@Named
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)    
 public class UsuarioRest  {
     
     @EJB
     UsuarioDao daoUsuario;
         
-    @POST
-    @Path("auth")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)    
-    public Response validarLogin(String res) 
-    {        
-        JSONObject response = new JSONObject(res);
-        String user = response.getString("email");
-        String password = response.getString("password");
-        Usuario usuario = daoUsuario.getUsuario(user);
+    @GET
+    @Path("auth/{email}/{password}")
+    public Usuario validarLogin(@PathParam("email")String email, @PathParam("password")String senha) 
+    {
+        Usuario usuario = daoUsuario.getUsuario(email);
         
-        if(usuario == null){
-            response.put("token", "404");
-            return Response.status(404).entity(response.toString()).build();
-        }
-        
-        if (usuario.getSenha().equals(encrypt(user, password))) 
+        if (usuario.getSenha().equals(encrypt(email, senha)))
         {
-            response.put("token", "200");
-            response.put("nome", usuario.getNome());
-            response.put("user", usuario.getUsuario());
-            return Response.status(200).entity(response.toString()).build();
+            return usuario;
         }
-       
-        response.put("token", "404");
-        return Response.status(404).entity(response.toString()).build();
+       return null;
     }
     
     private String encrypt(String login, String senha) 

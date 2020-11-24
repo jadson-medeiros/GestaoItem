@@ -31,34 +31,10 @@ public class GrupoRest
     @EJB
     GrupoDao daoGrupo;
         
-    @POST
-    @Path("add")
-    @Consumes(MediaType.APPLICATION_JSON)  
-    public Response addGrupo(String res) 
-    {        
-        JSONObject response = new JSONObject(res);
-        String nome = response.getString("nome");
-        
-        if (nome != null || nome != "")
-        {
-            Grupo grupo = new Grupo();
-            grupo.setNome(nome);
-            daoGrupo.add(grupo);
-            
-            response.put("token", "200");
-            response.put("message", "Grupo criado.");
-            return Response.status(200).entity(response.toString()).build();
-        } 
-        
-        response.put("token", "404");
-        response.put("message", "Error ao criar o Grupo.");
-        return Response.status(404).entity(response.toString()).build();
-    }    
-    
     @GET
     @Path("grupos")
     @Consumes(MediaType.APPLICATION_JSON)  
-    public Response getGrupos() 
+    public List<Grupo> getGrupos() 
     {                
         List<Grupo> grupoList = daoGrupo.getAllGrupos();
         List<Grupo> newGrupoList = daoGrupo.getAllGrupos();
@@ -74,9 +50,6 @@ public class GrupoRest
             }             
         }
                 
-        JSONObject response = new JSONObject();
-        response.put("grupos", newGrupoList);
-        response.put("token", "200");
-        return Response.status(200).entity(response.toString()).build();
+        return newGrupoList;
     } 
 }
