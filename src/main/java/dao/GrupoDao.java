@@ -78,4 +78,11 @@ public class GrupoDao
         q.setParameter("id", grupo.getId());
         return q.getResultList();
     }
+    
+    public List<Item> getItensByGrupoId(Long grupoId)
+    {
+        Query q = em.createQuery("select i from Item i where i.grupo.id = :id");
+        q.setParameter("id", grupoId);
+        return q.getResultList();
+    }
 }

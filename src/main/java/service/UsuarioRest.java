@@ -11,14 +11,11 @@ import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import model.Usuario;
-import org.primefaces.shaded.json.JSONObject;
 
 /**
  *
@@ -45,7 +42,8 @@ public class UsuarioRest  {
         {
             return usuario;
         }
-       return null;
+        
+        return null;
     }
     
     private String encrypt(String login, String senha) 

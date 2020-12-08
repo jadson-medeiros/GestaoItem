@@ -21,7 +21,7 @@ import model.Item;
 public class GuiItem implements Serializable 
 {
     /**
-     * Creates a new instance of GuiLogin
+     * Creates a new instance of GuiItem
      */
     private List<Item> itens;
     private Item item;
@@ -31,32 +31,35 @@ public class GuiItem implements Serializable
     
     public GuiItem() 
     {
-        //this.itens = daoItem.getAllItemByGrupoId(grupo.getId());
     }
 
-    public List<Item> getItens() {
+    public List<Item> getItens() 
+    {
         return itens;
     }
 
-    public void setItens(List<Item> itens) {
+    public void setItens(List<Item> itens) 
+    {
         this.itens = itens;
     }
 
-    public Item getItem() {
+    public Item getItem() 
+    {
         return item;
     }
 
-    public void setItem(Item item) {
+    public void setItem(Item item) 
+    {
         this.item = item;
     }
 
-    public ItemDao getDaoItem() {
+    public ItemDao getDaoItem() 
+    {
         return daoItem;
     }
 
-    public void setDaoItem(ItemDao daoItem) {
+    public void setDaoItem(ItemDao daoItem) 
+    {
         this.daoItem = daoItem;
-    }
-      
-   
+    }     
 }

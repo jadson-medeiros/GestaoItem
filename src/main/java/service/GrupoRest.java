@@ -6,18 +6,17 @@
 package service;
 
 import dao.GrupoDao;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import model.Componente;
 import model.Grupo;
-import org.primefaces.shaded.json.JSONObject;
 
 /**
  *
@@ -30,7 +29,7 @@ public class GrupoRest
 {    
     @EJB
     GrupoDao daoGrupo;
-        
+       
     @GET
     @Path("grupos")
     @Consumes(MediaType.APPLICATION_JSON)  
@@ -51,5 +50,21 @@ public class GrupoRest
         }
                 
         return newGrupoList;
-    } 
+    }  
+    
+    
+    @GET
+    @Path("grupos/{grupoId}")
+    public List<Grupo> GrupoByGrupoId(@PathParam("grupoId")Integer grupoId) 
+    {        
+        Grupo grupo = daoGrupo.getGrupoById(grupoId);
+        List<Grupo> gruposLista = new ArrayList();
+        
+        for(Componente c : grupo.getComponentes())
+        {
+            gruposLista.add((Grupo) c);
+        }
+        
+        return gruposLista;
+    }   
 }
